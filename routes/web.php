@@ -1,0 +1,62 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::resource('/penerimaan', \App\Http\Controllers\penerimaanController::class);
+Route::get('/penerimaan/export/{withStatus}', [\App\Http\Controllers\penerimaanController::class, 'export'])->name('penerimaan.export');
+
+
+Auth::routes();
+
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    // Route Setiap Formulir & sudah selesai 
+    Route::resource('/tanaman', App\Http\Controllers\tanamanController::class); // 0
+    Route::resource('/penerimaan', \App\Http\Controllers\penerimaanController::class); // 1 & 2
+    Route::resource('/penomorankoleksi', App\Http\Controllers\penomorankoleksiController::class);// 3
+    Route::resource('/pengeringan', App\Http\Controllers\pengeringanController::class); // 4
+    Route::resource('/pembuatan-bahan-koleksi', App\Http\Controllers\pembuatanBahanKoleksiController::class); // 5
+    Route::resource('/pola-trapesium', App\Http\Controllers\polaTrapesiumController::class); // 6
+    Route::resource('/pbtk', App\Http\Controllers\pbtkController::class); // 7
+    Route::resource('/pnptk', App\Http\Controllers\pnptkController::class); // 8
+    Route::resource('/dokumentasi-koleksi', App\Http\Controllers\dokumentasiKoleksiController::class); // 9
+    Route::resource('/anatomi-makroskopis', App\Http\Controllers\amakroController::class); // 10
+    Route::resource('/anatomi-mikroskopis', App\Http\Controllers\amikroController::class); // 11
+    Route::resource('/pendinginan', App\Http\Controllers\pendinginanController::class); // 12
+    Route::resource('/penyimpanan', App\Http\Controllers\penyimpananController::class); // 13
+    Route::resource('/inspeksi', App\Http\Controllers\inspeksiController::class); // 14
+    Route::resource('/pemeliharaan', App\Http\Controllers\pemeliharaanController::class); // 15
+    // Dalam Pengerjaan 
+    
+    // Define routes to fetch pengeringan and pendinginan records
+    Route::get('/getPengeringan/{tanaman_id}', [App\Http\Controllers\pemeliharaanController::class, 'getPengeringanByTanaman']);
+    Route::get('/getPendinginan/{tanaman_id}', [App\Http\Controllers\pemeliharaanController::class, 'getPendinginanByTanaman']);
+
+    
+    // Export 
+    Route::get('penerimaan/export/{withStatus}', [App\Http\Controllers\PenerimaanController::class, 'export'])->name('penerimaan.export'); // Formulir 1 dan 2 Dengan status atau tidak 
+    Route::get('penomorankoleksi-export', [App\Http\Controllers\penomoranKoleksiController::class, 'export'])->name('penomoran.export'); // Formulir 3
+    Route::get('/pengeringan-export', [App\Http\Controllers\pengeringanController::class,'export'])->name('pengeringan.export'); // Formulir 4
+    Route::get('/pembuatan-bahan-koleksi-export', [App\Http\Controllers\pembuatanBahanKoleksiController::class,'export'])->name('pembuatan-bahan-koleksi.export'); // formulir 5
+    Route::get('/pola-trapesium-export', [App\Http\Controllers\polaTrapesiumController::class,'export'])->name('pola-trapesium.export');// Formulir 6 (Belum Di kerjakan )
+    Route::get('/pbtk-export', [App\Http\Controllers\pbtkController::class,'export'])->name('pbtk.export');// Formulir 7
+    Route::get('/pnptk-export', [App\Http\Controllers\pnptkController::class,'export'])->name('pnptk.export'); //Formulir 8
+    Route::get('/dokumentasi-koleksi-export', [App\Http\Controllers\dokumentasiKoleksiController::class,'export'])->name('dokumentasi-koleksi.export'); // formulir 9
+});

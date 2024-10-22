@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\amakroController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,8 +55,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('penomorankoleksi-export', [App\Http\Controllers\penomoranKoleksiController::class, 'export'])->name('penomoran.export'); // Formulir 3
     Route::get('/pengeringan-export', [App\Http\Controllers\pengeringanController::class,'export'])->name('pengeringan.export'); // Formulir 4
     Route::get('/pembuatan-bahan-koleksi-export', [App\Http\Controllers\pembuatanBahanKoleksiController::class,'export'])->name('pembuatan-bahan-koleksi.export'); // formulir 5
-    Route::get('/pola-trapesium-export', [App\Http\Controllers\polaTrapesiumController::class,'export'])->name('pola-trapesium.export');// Formulir 6 (Belum Di kerjakan )
+    Route::get('/pola-trapesium-export', [App\Http\Controllers\polaTrapesiumController::class,'export'])->name('pola-trapesium.export');// Formulir 6
     Route::get('/pbtk-export', [App\Http\Controllers\pbtkController::class,'export'])->name('pbtk.export');// Formulir 7
     Route::get('/pnptk-export', [App\Http\Controllers\pnptkController::class,'export'])->name('pnptk.export'); //Formulir 8
     Route::get('/dokumentasi-koleksi-export', [App\Http\Controllers\dokumentasiKoleksiController::class,'export'])->name('dokumentasi-koleksi.export'); // formulir 9
+    Route::get('/export-anatomi-makroskopis', [amakroController::class, 'export'])->name('anatomi-makroskopis.export'); // form 10
+
 });

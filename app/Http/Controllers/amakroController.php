@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AnatomiMakroskopisExport;
 use Illuminate\Http\Request;
 use App\Models\anatomiMakroskopis;
 use App\Models\tanaman;
+use Maatwebsite\Excel\Facades\Excel;
 
 class amakroController extends Controller
 {
@@ -15,6 +17,12 @@ class amakroController extends Controller
     {
         $amakro = anatomiMakroskopis::with(['tanaman', 'User'])->get();
         return view('amakro.index', compact('amakro'));
+    }
+
+    public function export()
+    {
+        $amakro = anatomiMakroskopis::with('tanaman', 'User')->get();
+        return Excel::download(new AnatomiMakroskopisExport($amakro), 'anatomiMakroskopis.xlsx');
     }
 
     /**

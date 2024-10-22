@@ -21,6 +21,7 @@
 </head>
 <body>
     <div id="app">
+            
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
@@ -74,10 +75,28 @@
                 </div>
             </div>
         </nav>
+        @if (request()->is('home'))
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Sidebar -->
+                
+   
+                <div class="col-md-2 sidebar">
+                    @include('layouts.sidebar')
+                </div>
+                
 
-        <main class="py-4 bg-gray-500">
-            @yield('content')
-        </main>
+                <!-- Main Content -->
+                <div class="col-md-10 content">
+                    <main class="py-4">
+                        @yield('content')
+                    </main>
+                </div>
+            @else
+            <main class="py-4">
+                @yield('content')
+            </main>
+            @endif
     </div>
     
 </body>

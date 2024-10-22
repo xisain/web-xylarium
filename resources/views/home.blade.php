@@ -1,77 +1,135 @@
 @extends('layouts.app')
 
 @section('content')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 <style>
+  
     .card {
-        opacity: 0;
-        transform: translateY(50px);
-        transition: all 0.5s ease-in-out;
+        height: 100%; 
     }
 
-    .card.animate {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .btn {
-        opacity: 0;
-        transform: scale(0.8);
-        transition: all 0.3s ease-in-out;
-    }
-
-    .btn.animate {
-        opacity: 1;
-        transform: scale(1);
+    canvas {
+        max-height: 300px; 
     }
 </style>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header"> Hello, {{ Auth::user()->name }}!</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+{{-- Todo : Future Work --}}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-3">
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    
-                    <a href="/penerimaan" class="btn btn-primary mb-3">Penerimaan & Kelayakan</a>
-                    <a href="/penomorankoleksi" class="btn btn-primary mb-3">penomoran koleksi</a>
-                    <a href="/tanaman" class="btn btn-primary mb-3">Kekayaan</a>
-                    <a href="/pengeringan" class="btn btn-primary mb-3">Pengovenan</a>
-                    <a href="{{ route('pembuatan-bahan-koleksi.index') }}" class="btn btn-primary mb-3">Pembuatan Bahan Koleksi</a>
-                    <a href="{{ route('pola-trapesium.index') }}" class="btn btn-primary mb-3">Pembuatan Pola Trapesium</a>
-                    <a href="{{ route('pbtk.index') }}" class="btn btn-primary mb-3">Pembuatan Bahan Trapesium Koleksi </a>
-                    <a href="{{ route('pnptk.index') }}" class="btn btn-primary mb-3">Pengetokan Nomor pada Trapesium Koleksi </a>
-                    <a href="{{ route('dokumentasi-koleksi.index') }}" class="btn btn-primary mb-3">Dokumentasi Koleksi</a>
-                    <a href="{{ route('anatomi-makroskopis.index') }}"  class="btn btn-primary mb-3" >Anatomi Makroskopis</a>
-                    <a href="{{ route('anatomi-mikroskopis.index') }}"  class="btn btn-primary mb-3" >Anatomi Mikroskopis</a>
-                    <a href="{{ route('pendinginan.index') }}"  class="btn btn-primary mb-3" >Pendingingan</a>
-                    <a href="{{ route('penyimpanan.index') }}"  class="btn btn-primary mb-3" >Tersimpan</a>
-                    <a href="{{ route('inspeksi.index') }}"  class="btn btn-primary mb-3" >Inspeksi</a>
-                    <a href="{{ route('pemeliharaan.index') }}"  class="btn btn-primary mb-3" >pemeliharaan</a>
+                    <h5 class="card-title" id="total_tanaman">< &nbsp;Angka&nbsp;> <i class="fa-brands fa-pagelines"></i></h5>
+                    <p class="card-text">Total Data Tanaman Saat Ini: </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">< &nbsp;Angka&nbsp;> <i class="fa-brands fa-pagelines"></i></h5>
+                    <p class="card-text">Total Data Pengeringan: <strong>75</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">< &nbsp;Angka&nbsp;> <i class="fa-brands fa-pagelines"></i></h5>
+                    <p class="card-text">Total Data Penyimpanan: <strong>50</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-2">
+        <!-- First Row of Charts -->
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Chart 1: Data Tanaman</h5>
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Chart 2: Data Penyimpanan</h5>
+                    <canvas id="pieChart"></canvas>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
 
 <script>
     window.addEventListener('DOMContentLoaded', function() {
+        var total_tanaman = document.getElementById('total_tanaman')
+        fetch('http://xylarium.test/api/total-tanaman')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+   
+    console.log('Total Tanaman Count:', data.count);
+    total_tanaman.innerHTML = '<strong>'+ data.count+'</strong>' + '  <i class="fa-brands fa-pagelines"></i>'
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });
 
-        function belumTersedia() {
-            alert("belum ready")
-        }
-        var card = document.querySelector('.card');
-        var buttons = document.querySelectorAll('.btn');
 
-        card.classList.add('animate');
+        // Dummy data for the charts
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
 
-        buttons.forEach(function(button) {
-            button.classList.add('animate');
+        // Bar Chart
+        const barChart = new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Tanaman A', 'Tanaman B', 'Tanaman C', 'Tanaman D', 'Tanaman E'],
+                datasets: [{
+                    label: 'Jumlah Tanaman',
+                    data: [20, 30, 15, 25, 10], // Dummy data
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Pie Chart
+        const pieChart = new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Simpan', 'Habis', 'Rusak'],
+                datasets: [{
+                    label: 'Status Penyimpanan',
+                    data: [15, 25, 10], // Dummy data
+                    backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)'],
+                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                }
+            }
         });
     });
 </script>
+@endsection

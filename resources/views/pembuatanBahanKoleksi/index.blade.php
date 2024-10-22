@@ -35,7 +35,11 @@
                     <td>{{ $pbk->jumlah_potongan }}</td>
                     <td>{{ $pbk->keterangan }}</td>
                     <td>{{ $pbk->user->name}}</td>
-                    <td> <!-- Add your action buttons here --></td>
+                    <td><form action="{{ route('pembuatan-bahan-koleksi.destroy', $pbk->id) }}" method="POST">
+                        <a class="btn btn-primary" href="{{ route('penerimaan.edit',$pbk->id) }}">Edit</a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button></td>
                 </tr>
                 @endforeach
             </tbody>

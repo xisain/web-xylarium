@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\polaTrapesiumExport;
 use Illuminate\Http\Request;
 use App\Models\tanaman;
 use App\Models\polatrapesium;
+use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+
 class polaTrapesiumController extends Controller
 {
     /**
@@ -23,6 +27,20 @@ class polaTrapesiumController extends Controller
     {
         $tanamans = tanaman::all();
         return view('polatrapesium.create',compact('tanamans'));
+    }
+
+    public function export(){
+        $currentMonth = Carbon::now()->month;
+        $currentYear = Carbon::now()->year;
+        $now = Carbon::now();
+        $formatDate = $now->format('d-m-Y-H:i:s');
+        $polatrapesium = polatrapesium::with(['tanaman', 'User'])
+                         ->whereMonth('tanggal', $currentMonth)
+                         ->whereYear('tanggal', $currentYear)
+                         ->get();
+        dd($polatrapesium);
+        // return Excel::download(new polaTrapesiumExport($polatrapesium), 'pola_trapesium_'.$formatDate.'.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+
     }
 
     /**

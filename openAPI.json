@@ -1,0 +1,273 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Xylarium Spesies API",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://xylarium.test/api"
+    }
+  ],
+  "paths": {
+    "/species": {
+      "get": {
+        "summary": "Retrieve all species",
+        "description": "Returns a list of all species in the database.",
+        "responses": {
+          "200": {
+            "description": "A list of species.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Spesies"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new species",
+        "description": "Adds a new species to the database.",
+        "requestBody": {
+          "description": "Species object to be added",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Spesies"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Species created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Spesies"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/species/{id}": {
+      "get": {
+        "summary": "Retrieve a specific species",
+        "description": "Returns a single species by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the species to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Species found and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Spesies"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Species not found."
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update an existing species",
+        "description": "Modifies an existing species by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the species to update"
+          }
+        ],
+        "requestBody": {
+          "description": "Updated species data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Spesies"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Species updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Spesies"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Species not found."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a species",
+        "description": "Removes a species by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the species to delete"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Species deleted successfully."
+          },
+          "404": {
+            "description": "Species not found."
+          }
+        }
+      }
+    },
+    "/species/search": {
+      "get": {
+        "summary": "Search for species by nama",
+        "description": "Returns a list of species matching the provided name.",
+        "parameters": [
+          {
+            "name": "nama",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The name of the species to search for."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of species matching the search criteria.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "jumlah_data": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Spesies"
+                      }
+                    },
+                    "queryDate": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No matching species found."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Spesies": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "nama": {
+            "type": "string",
+            "example": "Abies alba"
+          },
+          "genera": {
+            "type": "string",
+            "example": "Abies"
+          },
+          "spesies": {
+            "type": "string",
+            "example": "alba"
+          },
+          "author_name": {
+            "type": "string",
+            "example": "Mill."
+          },
+          "infra_rank_species": {
+            "type": "string",
+            "example": "subsp."
+          },
+          "infra_rank_ephitet": {
+            "type": "string",
+            "example": "alpina"
+          },
+          "infra_rank_author": {
+            "type": "string",
+            "example": "K.Koch"
+          },
+          "margajenis": {
+            "type": "string",
+            "example": "Angiosperms"
+          },
+          "jenis": {
+            "type": "string",
+            "example": "Tree"
+          },
+          "taxon_rank": {
+            "type": "string",
+            "example": "Species"
+          }
+        },
+        "required": [
+          "nama",
+          "genera",
+          "spesies",
+          "author_name",
+          "margajenis",
+          "jenis",
+          "taxon_rank"
+        ]
+      }
+    }
+  }
+}

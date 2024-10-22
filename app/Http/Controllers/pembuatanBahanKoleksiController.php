@@ -27,7 +27,7 @@ class pembuatanBahanKoleksiController extends Controller
         $now = Carbon::now();
         $formatdate = $now->format('d-m-Y-H:i:s');
         $pembuatanBahanKoleksi = pembuatanBahanKoleksi::with(['tanaman','User'])->whereMonth("tanggal",$currentMonth)->whereYear('tanggal',$currentYear)->get();
-        return Excel::download(new pembuatanBahanKoleksiExport($pembuatanBahanKoleksi),'pembuatan-bahan-koleksi'.$formatdate.'.xlsx');
+        return Excel::download(new pembuatanBahanKoleksiExport($pembuatanBahanKoleksi),'pembuatan-bahan-koleksi-'.$formatdate.'.xlsx');
     }
 
     /**
@@ -88,6 +88,8 @@ class pembuatanBahanKoleksiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $search = pembuatanBahanKoleksi::findOrFail($id);
+        $search->delete();
+        return redirect()->route('pembuatanBahanKoleksi.index')->with('success','Data berhasil di hapus');
     }
 }

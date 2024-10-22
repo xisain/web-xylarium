@@ -1,9 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<link href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap-5-theme@1.3.2/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
  <div class="container">
     @if ($errors->any())
     <div class="alert alert-danger" role="alert">
@@ -90,8 +86,12 @@
         <button class="btn btn-primary mb-3 form-control" type="submit">Submit</button>
     </form>
     </div> 
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
     <script>
-         document.addEventListener('DOMContentLoaded', function(){
+        
+        document.addEventListener('DOMContentLoaded', function(){
         $('#tanaman_id').select2({
             placeholder: 'Pilih Koleksi',
             allowClear: true,

@@ -57,7 +57,7 @@
                    <img src="{{ 'storage/'.$amikros->kegiatan_sayatan_radial }}" alt="{{ $amikros->tanaman->jenis . 'Radial' }}" width="100">
                 </td>
                 <td>
-                   <img src="{{ 'storage/'.$amikros->kegiatan_sayatan_transversal }}" alt="{{ $amikros->tanaman->jenis . 'Tranversal' }}" width="100
+                   <img src="{{ 'storage/'.$amikros->kegiatan_sayatan_transversal }}" alt="{{ $amikros->tanaman->jenis . 'Tranversal' }}" width="100">
                 </td>
                 <td>
                    <img src="{{ 'storage/'.$amikros->kegiatan_serat_panjang }}" alt="{{ $amikros->tanaman->jenis . 'panjang' }}" width="100">

@@ -35,6 +35,8 @@
         </thead>
         <tbody>
             @foreach ($amikro as $index => $amikros)
+            <tr>
+
                 <td>
                     {{ $index+1 }}
                 </td>
@@ -51,31 +53,31 @@
                     {{ $amikros->tanaman->famili }}
                 </td>
                 <td>
-                   <img src="{{ 'storage/'.$amikros->kegiatan_sayatan_tangen }}" alt="{{ $amikros->tanaman->jenis . 'Tangen' }}" width="100">
+                    <img src="{{ 'storage/'.$amikros->kegiatan_sayatan_tangen }}" alt="{{ $amikros->tanaman->jenis . 'Tangen' }}" width="100">
                 </td>
                 <td>
-                   <img src="{{ 'storage/'.$amikros->kegiatan_sayatan_radial }}" alt="{{ $amikros->tanaman->jenis . 'Radial' }}" width="100">
+                    <img src="{{ 'storage/'.$amikros->kegiatan_sayatan_radial }}" alt="{{ $amikros->tanaman->jenis . 'Radial' }}" width="100">
                 </td>
                 <td>
-                   <img src="{{ 'storage/'.$amikros->kegiatan_sayatan_transversal }}" alt="{{ $amikros->tanaman->jenis . 'Tranversal' }}" width="100">
+                    <img src="{{ 'storage/'.$amikros->kegiatan_sayatan_transversal }}" alt="{{ $amikros->tanaman->jenis . 'Tranversal' }}" width="100">
                 </td>
                 <td>
-                   <img src="{{ 'storage/'.$amikros->kegiatan_serat_panjang }}" alt="{{ $amikros->tanaman->jenis . 'panjang' }}" width="100">
+                    <img src="{{ 'storage/'.$amikros->kegiatan_serat_panjang }}" alt="{{ $amikros->tanaman->jenis . 'panjang' }}" width="100">
                 </td>
                 <td>
-                   <img src="{{ 'storage/'.$amikros->kegiatan_serat_diameter }}" alt="{{ $amikros->tanaman->jenis . 'Diameter' }}" width="100">
+                    <img src="{{ 'storage/'.$amikros->kegiatan_serat_diameter }}" alt="{{ $amikros->tanaman->jenis . 'Diameter' }}" width="100">
                 </td>
                 <td>
-                   <img src="{{ 'storage/'.$amikros->kegiatan_serat_diameterLumen }}" alt="{{ $amikros->tanaman->jenis . '' }}" width="100">
+                    <img src="{{ 'storage/'.$amikros->kegiatan_serat_diameterLumen }}" alt="{{ $amikros->tanaman->jenis . '' }}" width="100">
                 </td>
                 <td>
-                   <img src="{{ 'storage/'.$amikros->kegiatan_serat_dindingSerat }}" alt="{{ $amikros->tanaman->jenis . '' }}" width="100">
+                    <img src="{{ 'storage/'.$amikros->kegiatan_serat_dindingSerat }}" alt="{{ $amikros->tanaman->jenis . '' }}" width="100">
                 </td>
                 <td>
-                   <img src="{{ 'storage/'.$amikros->kegiatan_serat_diameterPembuluh }}" alt="{{ $amikros->tanaman->jenis . '' }}" width="100">
+                    <img src="{{ 'storage/'.$amikros->kegiatan_serat_diameterPembuluh }}" alt="{{ $amikros->tanaman->jenis . '' }}" width="100">
                 </td>
                 <td>
-                   <img src="{{ 'storage/'.$amikros->kegiatan_serat_panjangPembuluh }}" alt="{{ $amikros->tanaman->jenis . '' }}" width="100">
+                    <img src="{{ 'storage/'.$amikros->kegiatan_serat_panjangPembuluh }}" alt="{{ $amikros->tanaman->jenis . '' }}" width="100">
                 </td>
                 <td>
                     {{ $amikros->keterangan }}
@@ -84,8 +86,9 @@
                     {{ $amikros->user->name }}
                 </td>
                 <td>
-                   Action
+                    Action
                 </td>
+            </tr>
             @endforeach
         </tbody>
     </table>

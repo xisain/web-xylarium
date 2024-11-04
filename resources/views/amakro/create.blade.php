@@ -9,16 +9,16 @@
 @endif
     <form action="{{ route('anatomi-makroskopis.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <a href="{{ route('pembuatan-bahan-koleksi.index') }}" class="btn btn-danger">Kembali Ke Index</a>
+        <a href="{{ route('anatomi-makroskopis.index') }}" class="btn btn-danger">Kembali Ke Index</a>
         <button type="reset" class="btn btn-warning">Reset Form</button>
-        <h2>Pembuatan Bahan Koleksi Xylarium </h2>
+        <h2>Anatomi Makroskopis</h2>
         <div class="row">
             <div class="form-control col-sm m-2">
                 <h3>Koleksi</h3>
-                <select name="tanaman_id" id="tanaman_id" class="form-select mb-3">    
+                <select name="tanaman_id" id="tanaman_id" class="form-select mb-3">
                     <option value="">Pilih koleksi</option>
                     @foreach ($tanamans as $tanaman)
-                    <option value="{{ $tanaman->id }}" 
+                    <option value="{{ $tanaman->id }}"
                         data-id-penomoran="{{ $tanaman->no_ketukan }}"
                         data-nama-tanaman="{{ $tanaman->jenis }}"
                         data-suku="{{ $tanaman->famili }}"
@@ -28,7 +28,7 @@
                     </option>
                     @endforeach
                 </select>
-                <div class="form-group mb-3">   
+                <div class="form-group mb-3">
                     <label for="nomor_koleksi" class="form-label">Nomor Koleksi</label>
                     <input type="text" name="nomor_koleksi" id="nomor_koleksi" class="form-control" disabled>
                 </div>
@@ -59,7 +59,7 @@
                             </div>
                             <button type="button" onclick="addImageInput('radialContainer')" class="btn btn-success">Add another image</button>
                         </div>
-            
+
                         <div class="form-control m-3 col-sm">
                             <h3>Tangen</h3>
                             <div id="tangenContainer">
@@ -70,7 +70,7 @@
                             </div>
                             <button type="button" onclick="addImageInput('tangenContainer')" class="btn btn-success">Add another image</button>
                         </div>
-            
+
                         <div class="form-control m-3 col-sm">
                             <h3>Transversal</h3>
                             <div id="transversalContainer">
@@ -81,17 +81,17 @@
                             </div>
                             <button type="button" onclick="addImageInput('transversalContainer')" class="btn btn-success">Add another image</button>
                         </div>
-                       
-                       
+
+
                     </div>
-                    
+
                 </div>
-                
+
             </div>
         </div>
-     
 
-        
+
+
         <div class="form-group mb-3">
             <input type="hidden" name="author_id" value="{{ Auth::user()->id }}">
             <label for="keterangan">Keterangan</label>
@@ -111,7 +111,7 @@
             placeholder: 'Pilih Koleksi',
             allowClear: true,
         });
-        
+
         $('#tanaman_id').on('select2:select', function(e) {
                 const data = e.params.data.element.dataset;
                 document.getElementById('nomor_koleksi').value = data.idPenomoran;

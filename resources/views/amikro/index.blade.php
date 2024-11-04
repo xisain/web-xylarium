@@ -10,27 +10,27 @@
                 <th rowspan="3">Tanggal</th>
                 <th rowspan="3">Nama Jenis</th>
                 <th rowspan="3">Suku</th>
-                <th colspan="9">Kegiatan Mikroskopis</th>
+                <th colspan="9" class="text-center">Kegiatan Mikroskopis</th>
                 <th rowspan="3">Keterangan</th>
                 <th rowspan="3">Pelaksana</th>
                 <th rowspan="3">Action</th>
             </tr>
             <tr>
-                <th colspan="3">Preparat Sayatan</th>
-                <th colspan="6">Preparat Serat</th>
+                <th colspan="3" class="text-center">Preparat Sayatan</th>
+                <th colspan="6" class="text-center">Preparat Serat</th>
             </tr>
             <tr>
-                <th>Urut</th>
-                <th>Koleksi</th>
-                <th>Tangen</th>
-                <th>Radial</th>
-                <th>Transversal</th>
-                <th>Panjang Serat</th>
-                <th>Diameter Serat</th>
-                <th>Diameter Lumen</th>
-                <th>Tebal Dinding Serat</th>
-                <th>Diameter Pembuluh</th>
-                <th>Panjang Pembuluh</th>
+                <th class="text-center">Urut</th>
+                <th class="text-center">Koleksi</th>
+                <th class="text-center">Tangen</th>
+                <th class="text-center">Radial</th>
+                <th class="text-center">Transversal</th>
+                <th class="text-center">Panjang Serat</th>
+                <th class="text-center">Diameter Serat</th>
+                <th class="text-center">Diameter Lumen</th>
+                <th class="text-center">Tebal Dinding Serat</th>
+                <th class="text-center">Diameter Pembuluh</th>
+                <th class="text-center">Panjang Pembuluh</th>
             </tr>
         </thead>
         <tbody>

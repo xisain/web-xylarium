@@ -14,7 +14,7 @@
     @extends('layouts.app')
 
     @section('content')
-    <div class="container-fluid">
+    <div class="container">
         <h1>Daftar Tanaman</h1>
         <a href="{{ route('tanaman.create') }}" class="btn btn-primary">Tambah Tanaman</a>
         <table id="tanamanTable" class="table table-bordered">
@@ -73,7 +73,7 @@
                     selector:'td:nth-child(2)'
                 }
             })
-        
+
 
             // Toastr messages
             @if(session()->has('success'))

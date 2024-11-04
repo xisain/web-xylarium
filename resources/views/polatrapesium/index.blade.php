@@ -39,10 +39,10 @@
                         <td>{{ $pola->terpola_jumlah }}</td>
                         <td>{{ $pola->keterangan }}</td>
                         <td>
-                            <form action="{{ route('pola-trapesium.destroy', $pola->id) }}" method="POST" style="display:inline-block;">
+                            <form id="delete-form-{{ $pola->id }}" action="{{ route('pola-trapesium.destroy', $pola->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $pola->id }})">Delete</button>
                             </form>
                         </td>
 
@@ -60,7 +60,7 @@
             text: "{{ Session::get('success') }}"
         });
         @endif
-    
+
         @if(Session::has('error'))
         Swal.fire({
             icon: 'error',

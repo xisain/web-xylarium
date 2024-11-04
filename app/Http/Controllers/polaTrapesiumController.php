@@ -93,6 +93,8 @@ class polaTrapesiumController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $find = polatrapesium::findOrFail($id);
+        $find->delete();
+        return redirect()->route('pola-trapesium.index')->with('success', 'data terhapus');
     }
 }

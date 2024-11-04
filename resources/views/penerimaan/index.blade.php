@@ -2,8 +2,6 @@
 @section('content')
 
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <div class="container">
     <h1 class="mt-5">Penerimaan List</h1>
     <a href="{{ route('penerimaan.create') }}" class="btn btn-primary mb-3">Create New Penerimaan</a>
@@ -28,7 +26,7 @@
         <tr>
             <th>Log</th>
             <th>Lempengan</th>
-            
+
         </tr>
         <tbody>
         @foreach ($penerimaans as $penerimaan)
@@ -40,11 +38,11 @@
             <td>{{ $penerimaan->tempat_asal }}</td>
             <td>{{ $penerimaan->tanggal_terima }}</td>
             <td>{{ $penerimaan->xylarium_log }}</td>
-            <td>{{ $penerimaan->xylarium_lempengan }}</td>
+            <td>{{ $penerimaan->xylarium_lempeng }}</td>
             <td>{{ $penerimaan->jumlah_material }}</td>
-            <td>{{ $penerimaan->Koordinat }}</td>
+            <td>{{ $penerimaan->koordinat }}</td>
             <td>{{ $penerimaan->keterangan }}</td>
-            
+
             <td>
                 @if($penerimaan->status == 'layak')
                     <span class="badge bg-success">Layak</span>
@@ -56,12 +54,12 @@
             </td>
             <td>{{ $penerimaan->user->name }}</td>
             <td>
-                <form action="{{ route('penerimaan.destroy',$penerimaan->id) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('penerimaan.show',$penerimaan->id) }}">Show</a>
-                    <a class="btn btn-primary" href="{{ route('penerimaan.edit',$penerimaan->id) }}">Edit</a>
+                <form id="delete-form-{{ $penerimaan->id }}" action="{{ route('penerimaan.destroy', $penerimaan->id) }}" method="POST">
+                    <a class="btn btn-info" href="{{ route('penerimaan.show', $penerimaan->id) }}">Show</a>
+                    <a class="btn btn-primary" href="{{ route('penerimaan.edit', $penerimaan->id) }}">Edit</a>
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $penerimaan->id }})">Delete</button>
                 </form>
             </td>
         </tr>
@@ -70,35 +68,7 @@
     </table>
     {{ $penerimaans -> links() }}
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-   toastr.options = {
-  "closeButton": true,
-  "debug": false,
-  "newestOnTop": true,
-  "progressBar": true,
-  "positionClass": "toast-top-center",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "5000",
-  "extendedTimeOut": "1000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-},
 
-@if(Session::has('success'))
-    toastr.success("{{ Session::get('success') }}");
-@endif
 
-@if(Session::has('error'))
-    toastr.error("{{ Session::get('error') }}");
-@endif
-
-</script>
 @endsection
+@section('scripts')

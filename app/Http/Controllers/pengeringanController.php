@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\pengeringanExport;
+use App\Models\penerimaan;
 use Illuminate\Http\Request;
 use App\Models\pengeringan;
 use App\Models\tanaman;
@@ -29,7 +30,7 @@ class pengeringanController extends Controller
             ->whereMonth('tanggal_masuk', $currentMonth)
             ->whereYear('tanggal_masuk', $currentYear)
             ->get();
-    
+
         return Excel::download(new pengeringanExport($pengeringan), 'pengeringan-'.$formatdate.'.xlsx');
     }
     /**
@@ -56,9 +57,9 @@ class pengeringanController extends Controller
             'keterangan' => 'nullable|string',
 
         ]);
-       
+
         pengeringan::create($validatedData);
-        return redirect()->route('pengeringan.index')->with('success', 'Data added successfully');
+        return redirect()->route('pengeringan.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -90,6 +91,8 @@ class pengeringanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $kering = pengeringan::findOrFail($id);
+        $kering->delete();
+        return redirect()->route('pengeringan.index')->with('success', 'Data berhasil di hapus');
     }
 }

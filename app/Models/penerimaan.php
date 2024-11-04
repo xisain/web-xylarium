@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class penerimaan extends Model
 {
-    use HasFactory; 
+    use HasFactory;
     protected $table = 'penerimaans';
     public function penomoranKoleksi()
     {
@@ -20,7 +20,7 @@ class penerimaan extends Model
         'tempat_asal',
         'tanggal_terima',
         'xylarium_log',
-        'xylarium_lempengan',
+        'xylarium_lempeng',
         'jumlah_material',
         'Koordinat',
         'keterangan',
@@ -33,4 +33,3 @@ class penerimaan extends Model
         return $this->belongsTo(User::class, 'author_id');
     }
 }
-    

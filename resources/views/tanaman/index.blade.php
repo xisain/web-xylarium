@@ -20,14 +20,14 @@
         <table id="tanamanTable" class="table table-bordered">
             <thead>
                 <tr>
-                    <th>No Ketukan</th>
-                    <th>Jenis</th>
-                    <th>Synonime</th>
-                    <th>Famili</th>
-                    <th>Nomor Vak</th>
-                    <th>Nama Lokal</th>
-                    <th>Keterangan</th>
-                    <th>Aksi</th>
+                    <th class="text-center">No Ketukan</th>
+                    <th class="text-center">Jenis</th>
+                    <th class="text-center">Synonime</th>
+                    <th class="text-center">Famili</th>
+                    <th class="text-center">Nomor Vak</th>
+                    <th class="text-center">Nama Lokal</th>
+                    <th class="text-center">Keterangan</th>
+                    <th class="text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody>

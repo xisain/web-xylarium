@@ -14,14 +14,14 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
 </head>
 <body>
     <div id="app">
-            
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
@@ -79,12 +79,10 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- Sidebar -->
-                
-   
                 <div class="col-md-2 sidebar">
                     @include('layouts.sidebar')
                 </div>
-                
+
 
                 <!-- Main Content -->
                 <div class="col-md-10 content">
@@ -98,6 +96,45 @@
             </main>
             @endif
     </div>
-    
+    @yield('scripts')
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script>
+        @if(Session::has('success'))
+        Swal.fire({
+            title: "Berhasil",
+            text: "{{ Session::get('success') }}".toUpperCase(),
+            icon: "success"
+        });
+        @endif
+
+        @if(Session::has('error'))
+        Swal.fire({
+            title: "Error",
+            text: "{{ Session::get('error') }}".toUpperCase(),
+            icon: "error"
+        });
+        @endif
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Yakin Mau di Hapus?',
+                text: "Data Yang Dihapus tidak dapat di kembalikan",
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'Tidak',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                        document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
+    </script>
 </body>
 </html>

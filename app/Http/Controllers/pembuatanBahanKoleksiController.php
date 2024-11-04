@@ -34,7 +34,7 @@ class pembuatanBahanKoleksiController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {   
+    {
         $tanaman = tanaman::all();
         return view('pembuatanBahanKoleksi.create', compact("tanaman"));
     }
@@ -56,7 +56,7 @@ class pembuatanBahanKoleksiController extends Controller
 
         ]);
         $pembuatanBahanKoleksi = pembuatanBahanKoleksi::create($validatedData);
-        return redirect()->route('pembuatan-bahan-koleksi.index')->with('success', 'Data added successfully');
+        return redirect()->route('pembuatan-bahan-koleksi.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -90,6 +90,6 @@ class pembuatanBahanKoleksiController extends Controller
     {
         $search = pembuatanBahanKoleksi::findOrFail($id);
         $search->delete();
-        return redirect()->route('pembuatanBahanKoleksi.index')->with('success','Data berhasil di hapus');
+        return redirect()->route('pembuatan-bahan-koleksi.index')->with('success','Data berhasil di hapus');
     }
 }

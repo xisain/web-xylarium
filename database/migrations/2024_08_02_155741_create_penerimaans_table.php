@@ -13,7 +13,18 @@ return new class extends Migration
     {
         Schema::create('penerimaans', function (Blueprint $table) {
             $table->id();
-            
+            $table->string('nama_tanaman');
+            $table->string('suku');
+            $table->string('habitus');
+            $table->string('tempat_asal');
+            $table->string('tanggal_terima');
+            $table->string('xylarium_log');
+            $table->string('xylarium_lempeng');
+            $table->string('jumlah_material');
+            $table->string('koordinat');
+            $table->string('keterangan')->nullable();
+            $table->enum('status',['Belum di cek','layak','tidak' ]);
+            $table->foreignId('author_id')->constrained('users');
             $table->timestamps();
         });
     }

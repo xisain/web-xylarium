@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class penerimaanController extends Controller
 {
-    
+
     public function export($withStatus)
     {
         $withStatus = $withStatus == 'with-status';
@@ -22,7 +22,7 @@ class penerimaanController extends Controller
     {
         $penerimaans = penerimaan::with('user')->orderBy('id')->paginate(15);
       return view('penerimaan.index', compact('penerimaans'));
-        
+
     }
     /**
      * Show the form for creating a new resource.
@@ -37,18 +37,18 @@ class penerimaanController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $validatedData = $request->validate([
         'nama_tanaman'=> 'required|string|max:255',
         'suku'=> 'required|string|max:255',
         'habitus'=> 'required|string|max:255',
         'tempat_asal'=> 'required|string|max:255',
-        'tanggal_terima'=> 'required|date',
+        'tanggal_terima'=> 'required|',
         'xylarium_log'  => 'required|string|max:255',
-        'xylarium_lempengan'=> 'required|string|max:255',
+        'xylarium_lempeng'=> 'required|string|max:255',
         'jumlah_material'=> 'required|string|max:255',
         'Koordinat'=> 'required|string|max:255',
-        'keterangan' => 'required|string|max:255',
-        'status' => 'nullable|string|in:layak,tidak,belum di cek', 
+        'keterangan' => 'nullable|string|max:255',
         'author_id' => 'required|exists:users,id'
         ]);
         penerimaan::create($validatedData);
@@ -84,11 +84,11 @@ class penerimaanController extends Controller
             'habitus'=> 'required|string|max:255',
             'tempat_asal'=> 'required|string|max:255',
             'xylarium_log'  => 'required|string|max:255',
-            'xylarium_lempengan'=> 'required|string|max:255',
+            'xylarium_lempeng'=> 'required|string|max:255',
             'jumlah_material'=> 'required|string|max:255',
             'Koordinat'=> 'required|string|max:255',
             'keterangan' => 'nullable|string|max:255',
-            'status' => 'string|in:layak,tidak,belum di cek', 
+            'status' => 'string|in:layak,tidak,belum di cek',
             'author_id' => 'required|exists:users,id'
             ]);
 

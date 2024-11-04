@@ -12,6 +12,7 @@
 @section('content')
 <div class="container">
     <h2>Edit Penerimaan</h2>
+    {{ $penerimaan }}
     <form action="{{ route('penerimaan.update', $penerimaan->id) }}" method="POST">
         @csrf
         @method('PUT')
@@ -36,8 +37,8 @@
             <input type="text" class="form-control" id="xylarium_log" name="xylarium_log" value="{{ $penerimaan->xylarium_log }}">
         </div>
         <div class="form-group">
-            <label for="xylarium_lempengan">Xylarium Lempengan:</label>
-            <input type="text" class="form-control" id="xylarium_lempengan" name="xylarium_lempengan" value="{{ $penerimaan->xylarium_lempengan }}">
+            <label for="xylarium_lempeng">Xylarium Lempengan:</label>
+            <input type="text" class="form-control" id="xylarium_lempeng" name="xylarium_lempeng" value="{{ $penerimaan->xylarium_lempeng }}">
         </div>
         <div class="form-group">
             <label for="jumlah_material">Jumlah Material:</label>
@@ -45,7 +46,7 @@
         </div>
         <div class="form-group">
             <label for="Koordinat">Koordinat:</label>
-            <input type="text" class="form-control" id="Koordinat" name="Koordinat" value="{{ $penerimaan->Koordinat }}">
+            <input type="text" class="form-control" id="Koordinat" name="Koordinat" value="{{ $penerimaan->koordinat }}">
         </div>
         <div class="form-group">
             <label for="keterangan">Keterangan:</label>

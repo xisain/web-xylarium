@@ -32,41 +32,17 @@
                 <td>{{ $penomoranItem->keterangan }}</td>
                 <td>{{ $penomoranItem->user->name }}</td>
                 <td>
-                    <a href="{{ route('penomorankoleksi.show',$penomoranItem -> id) }}" class="btn btn-primary">Show </a>
+                <form id="delete-form-{{ $penomoranItem->id }}" action="{{ route('penomorankoleksi.destroy', $penomoranItem->id) }}" method="POST">
+                    <a class="btn btn-primary" href="{{ route('penomorankoleksi.edit', $penomoranItem->id) }}">Edit</a>
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $penomoranItem->id }})">Delete</button>
+                </form>
+
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script>
-   toastr.options = {
-  "closeButton": true,
-  "debug": false,
-  "newestOnTop": true,
-  "progressBar": true,
-  "positionClass": "toast-top-center",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "5000",
-  "extendedTimeOut": "1000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-},
-
-@if(Session::has('success'))
-    toastr.success("{{ Session::get('success') }}");
-@endif
-
-@if(Session::has('error'))
-    toastr.error("{{ Session::get('error') }}");
-@endif
-
-</script>
 @endsection

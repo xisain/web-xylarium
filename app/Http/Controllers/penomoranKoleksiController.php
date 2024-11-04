@@ -38,20 +38,20 @@ class penomoranKoleksiController extends Controller
         // Get the highest `nomor_koleksi` value
         $maxNomorKoleksi = tanaman::max('id');
         $newNomorKoleksi = $maxNomorKoleksi ? $maxNomorKoleksi + 1 : 1;
-    
+
         // Pad the new `nomor_koleksi` with leading zeros (6 digits)
         $paddedNomorKoleksi = str_pad($newNomorKoleksi, 6, '0', STR_PAD_LEFT);
-    
+
         // Fetch the penerimaan with status 'layak'
         $penerimaan = Penerimaan::where('status', 'layak')->get();
-    
+
         // Pass the data to the view
         return view('penomorankoleksi.create', [
             'penerimaan' => $penerimaan,
             'paddedNomorKoleksi' => $paddedNomorKoleksi,
         ]);
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -67,7 +67,7 @@ class penomoranKoleksiController extends Controller
             'author_id' => 'required|exists:users,id'
         ]);
         penomoranKoleksi::create($validatedData);
-        return redirect()->route('penomorankoleksi.index')->with('success', 'Data added successfully');
+        return redirect()->route('penomorankoleksi.index')->with('success', 'Data berhasil ditambahkan');
     }
 
 
@@ -114,6 +114,6 @@ class penomoranKoleksiController extends Controller
     {
         $penomoran = penomoranKoleksi::findOrfail($id);
         $penomoran->delete();
-        return redirect("penomorankoleksi.index")->with("success", "Data Terhapus");
+        return redirect()->route("penomorankoleksi.index")->with("success", "Data Terhapus");
     }
 }

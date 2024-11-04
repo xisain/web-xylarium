@@ -20,7 +20,7 @@
         </tr>
     </thead>
     <tbody>
-       
+
             @foreach($pengeringan as $kering)
             <tr>
         <td>{{ $kering->id }}</td>
@@ -29,14 +29,16 @@
         <td>{{ $kering->tanaman->famili }}</td>
         <td></td>
         <td>{{ $kering->tanaman->lokasi }}</td>
-        
+
         <td>{{ $kering->tanggal_masuk }}</td>
         <td>{{ $kering->tanggal_keluar }}</td>
         <td>{{ $kering->user->name }}</td>
         <td>
-            <form action="post">
+            <form id="delete-form-{{ $kering->id }}" action="{{ route('pengeringan.destroy', $kering->id) }}" method="POST">
+
                 @csrf
-                <a href="{{ route('pengeringan.destroy',$kering->id) }}" class="btn btn-danger">Delete</a>
+                @method('DELETE')
+                <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $kering->id }})">Delete</button>
             </form>
         </td>
     </tr>

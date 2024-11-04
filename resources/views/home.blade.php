@@ -2,13 +2,13 @@
 
 @section('content')
 <style>
-  
+
     .card {
-        height: 100%; 
+        height: 100%;
     }
 
     canvas {
-        max-height: 300px; 
+        max-height: 300px;
     }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row mt-2">
         <!-- First Row of Charts -->
         <div class="col-md-6">
@@ -65,7 +65,7 @@
 <script>
     window.addEventListener('DOMContentLoaded', function() {
         var total_tanaman = document.getElementById('total_tanaman')
-        fetch('http://xylarium.test/api/total-tanaman')
+        fetch('{{ route('total.tanaman') }}')
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -73,7 +73,7 @@
     return response.json();
   })
   .then(data => {
-   
+
     console.log('Total Tanaman Count:', data.count);
     total_tanaman.innerHTML = '<strong>'+ data.count+'</strong>' + '  <i class="fa-brands fa-pagelines"></i>'
   })

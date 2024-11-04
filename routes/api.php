@@ -21,12 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('species', [spesiesController::class, 'index']);
-Route::get('species/search/{id?}', [spesiesController::class, 'getSearchNama']);
+Route::get('species/search/{id?}', [spesiesController::class, 'getSearchNama'])->name('species.search');;
 Route::post('species', [spesiesController::class, 'store']);
 Route::put('species/{id}', [spesiesController::class, 'update']);
 Route::delete('species/{id}', [spesiesController::class, 'destroy']);
-Route::get('/spesies/{id?}', [SpesiesController::class, 'show']); 
+Route::get('/spesies/{id?}', [SpesiesController::class, 'show']);
 
 Route::get('/penerimaan-tanaman', [chartdata::class, 'getPenerimaanTanaman']);
-Route::get('/total-tanaman', [chartdata::class, 'getTotalTanaman']);
+Route::get('/total-tanaman', [chartdata::class, 'getTotalTanaman'])->name('total.tanaman');
 Route::get('/tanaman-penomoran', [chartdata::class, 'getTanamanPenomoran']);

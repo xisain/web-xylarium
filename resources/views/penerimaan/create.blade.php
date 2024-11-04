@@ -64,7 +64,7 @@
         $('#nama_tanaman').select2({
             placeholder: 'Select Nama Tanaman',
             ajax: {
-                url: 'http://192.168.100.241/api/species/search', // Correct search endpoint
+                url: '{{  route('species.search')}}', // Correct search endpoint
                 dataType: 'json',
                 delay: 250,
                 data: function(params) {
@@ -78,8 +78,12 @@
                             return {
                                 id: item.id,
                                 text: item.nama, // Display 'nama' in the dropdown
-                                suku: item.suku, // Include 'suku' in the result
-                                habitus: item.habitus // Include 'habitus' in the result
+                                genera: item.genera, // Include 'suku' in the result
+                                author:item.author_name,
+                                spesies: item.spesies,
+                                infra_rank_species: item.infra_rank_species,
+                                infra_rank_ephitet: item.infra_rank_ephitet,
+
                             };
                         })
                     };
@@ -89,8 +93,8 @@
         });
         $('#nama_tanaman').on('select2:select', function(e) {
             var selectedItem = e.params.data;
-            console.log(selectedItem)
-          
+            $('#suku').val(selectedItem.genera)
+
         });
 
         // Listen to the Select2 select event

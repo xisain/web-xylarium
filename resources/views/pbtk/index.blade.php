@@ -47,7 +47,11 @@
                         <td>{{ $pbtk->jumlah_potongan }}</td>
                         <td>{{ $pbtk->keterangan ? $pbtk->keterangan:'Kosong' }}</td>
                         <td>{{ $pbtk->user->name }}</td>
-                        <td>Action</td>
+                        <td><form id="delete-form-{{ $pbtk->id }}" action="{{ route('pbtk.destroy', $pbtk->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $pbtk->id }})">Delete</button>
+                        </form></td>
 
                     </tr>
                 @endforeach

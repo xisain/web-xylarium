@@ -20,7 +20,7 @@ class pbtkController extends Controller
         $pbtks = pbtk::with(['tanaman', 'User'])->get();
         return view('pbtk.index',compact('pbtks'));
     }
-    public function export() 
+    public function export()
     {
         $currentMonth = Carbon::now()->month;
         $currentYear = Carbon::now()->year;
@@ -44,7 +44,7 @@ class pbtkController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        
+
         $validatedData = $request->validate([
             'tanggal' => 'required|date',
             'tanaman_id' => 'required|exists:tanamen,id',
@@ -90,6 +90,8 @@ class pbtkController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $find = pbtk::findOrFail($id);
+        $find->delete();
+        return redirect()->route('pbtk.index')->with('success', 'Data terhapus');
     }
 }

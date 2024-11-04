@@ -6,6 +6,7 @@ use App\Exports\AnatomiMakroskopisExport;
 use Illuminate\Http\Request;
 use App\Models\anatomiMakroskopis;
 use App\Models\tanaman;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class amakroController extends Controller
@@ -104,6 +105,45 @@ class amakroController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Find the anatomi makroskopis record by ID
+        $record = anatomiMakroskopis::findOrFail($id);
+
+        // Decode JSON paths for images
+        $radialImages = json_decode($record->radial_images);
+        $tangenImages = json_decode($record->tangen_images);
+        $transversalImages = json_decode($record->transversal_images);
+
+        // Delete radial images if they exist
+        if ($radialImages) {
+            foreach ($radialImages as $path) {
+                if (Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->delete($path);
+                }
+            }
+        }
+
+        // Delete tangen images if they exist
+        if ($tangenImages) {
+            foreach ($tangenImages as $path) {
+                if (Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->delete($path);
+                }
+            }
+        }
+
+        // Delete transversal images if they exist
+        if ($transversalImages) {
+            foreach ($transversalImages as $path) {
+                if (Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->delete($path);
+                }
+            }
+        }
+
+        // Delete the anatomi makroskopis record
+        $record->delete();
+
+        // Redirect with success message
+        return redirect()->route('anatomi-makroskopis.index')->with('success', 'Data terhapus');
     }
 }

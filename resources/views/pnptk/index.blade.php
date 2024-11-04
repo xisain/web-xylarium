@@ -48,7 +48,13 @@
                 <td>{{ $pnptk->xylarium_potongan }}</td>
                 <td>{{ $pnptk->keterangan }}</td>
                 <td>{{ $pnptk->user->name }}</td>
-                <td></td>
+                <td>
+                    <form id="delete-form-{{ $pnptk->id }}" action="{{ route('pnptk.destroy', $pnptk->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $pnptk->id }})">Delete</button>
+                    </form>
+                </td>
                 </tr>
                 @endforeach
             </tbody>

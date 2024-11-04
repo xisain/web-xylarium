@@ -22,8 +22,8 @@ class pnptkController extends Controller
     public function export(){
         $currentYear = Carbon::now()->year;
         $currentMonth = Carbon::now()->month;
-        
-        
+
+
         $pnptk = pnptk::with(["tanaman","User"])
         ->whereMonth('created_at', $currentMonth)
         ->whereYear('created_at', $currentYear)
@@ -91,6 +91,8 @@ class pnptkController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $find = pnptk::findOrFail($id);
+        $find->delete();
+        return redirect()->route('pnptk.index')->with('success','data terhapus');
     }
 }

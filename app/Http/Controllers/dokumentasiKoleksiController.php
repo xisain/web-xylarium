@@ -8,6 +8,7 @@ use App\Models\tanaman;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\DokumentasiKoleksiExport;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class dokumentasiKoleksiController extends Controller
 {
@@ -96,6 +97,37 @@ class dokumentasiKoleksiController extends Controller
      */
     public function destroy(string $id)
     {
-        // Implement if needed
+     // Find the dokumentasi koleksi by ID
+     $find = dokumentasiKoleksi::findOrFail($id);
+
+     // Decode JSON paths for the photos
+     $foto_pola_paths = json_decode($find->foto_pola);
+     $foto_trapesium_paths = json_decode($find->foto_trapesium);
+
+     // Delete foto pola files if they exist
+     if ($foto_pola_paths) {
+
+             // Ensure the path is correct relative to storage
+             if (Storage::disk('public')->exists($foto_pola_paths)) {
+                 Storage::disk('public')->delete($foto_pola_paths);
+
+         }
+     }
+
+     // Delete foto trapesium files if they exist
+     if ($foto_trapesium_paths) {
+
+             // Ensure the path is correct relative to storage
+             if (Storage::disk('public')->exists($foto_trapesium_paths)) {
+                 Storage::disk('public')->delete($foto_trapesium_paths);
+
+         }
+     }
+
+     // Delete the dokumentasi koleksi record
+     $find->delete();
+
+     // Redirect with a success message
+     return redirect()->route('dokumentasi-koleksi.index')->with('success', 'Data terhapus');
     }
 }

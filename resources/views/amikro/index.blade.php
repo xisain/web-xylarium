@@ -86,7 +86,11 @@
                     {{ $amikros->user->name }}
                 </td>
                 <td>
-                    Action
+                    <form id="delete-form-{{ $amikros->id }}" action="{{ route('anatomi-mikroskopis.destroy', $amikros->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $amikros->id }})">Delete</button>
+                    </form>
                 </td>
             </tr>
             @endforeach

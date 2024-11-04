@@ -40,7 +40,7 @@
                        @else
                            <p>No Images</p>
                        @endif
-                       
+
 
                     </td>
                     <td>
@@ -57,7 +57,11 @@
                     </td>
                     <td>{{ $makro->keterangan }}</td>
                     <td>{{ $makro->user->name }}</td>
-                    <td>Action</td>
+                    <td><form id="delete-form-{{ $makro->id }}" action="{{ route('anatomi-makroskopis.destroy', $makro->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $makro->id }})">Delete</button>
+                    </form></td>
                 </tr>
             @endforeach
         </tbody>

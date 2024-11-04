@@ -15,6 +15,7 @@
                     <th colspan="2" class="text-center">Foto</th>
                     <th rowspan="2">Pelaksana</th>
                     <th rowspan="2">Keterangan</th>
+                    <th rowspan="2">Action</th>
                 </tr>
                 <tr>
                     <th>No Urut</th>
@@ -48,6 +49,13 @@
                         </td>
                         <td class="text-center">{{ $koleksi->user->name ?? 'N/A' }}</td>
                         <td>{{ $koleksi->keterangan}}</td>
+                        <td>
+                            <form id="delete-form-{{ $koleksi->id }}" action="{{ route('dokumentasi-koleksi.destroy', $koleksi->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $koleksi->id }})">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

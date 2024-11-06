@@ -65,7 +65,7 @@
 <script>
     window.addEventListener('DOMContentLoaded', function() {
         var total_tanaman = document.getElementById('total_tanaman')
-        fetch('{{ route('total.tanaman') }}')
+        fetch('{{ route('total.tanaman',[], true) }}')
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');

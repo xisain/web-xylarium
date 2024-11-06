@@ -72,7 +72,7 @@
         $('#getTanaman').select2({
             placeholder: 'Select Nama Tanaman',
             ajax: {
-                url: '{{  route('species.search')}}', // Correct search endpoint
+                url: '{{ route('species.search', [], true) }}', // Correct search endpoint
                 dataType: 'json',
                 delay: 250,
                 data: function(params) {

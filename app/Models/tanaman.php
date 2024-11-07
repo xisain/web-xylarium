@@ -22,17 +22,17 @@ class Tanaman extends Model
 
     public function penomoranKoleksi()
     {
-        return $this->belongsTo(PenomoranKoleksi::class);
+        return $this->belongsTo(penomoranKoleksi::class);
     }
 
     public function pengeringan()
     {
-        return $this->hasMany(Pengeringan::class); // or hasMany if there are multiple
+        return $this->hasMany(pengeringan::class); // or hasMany if there are multiple
     }
 
     public function pendinginan()
     {
-        return $this->hasMany(Pendinginan::class); // or hasMany if there are multiple
+        return $this->hasMany(pendinginan::class); // or hasMany if there are multiple
     }
 
     protected $fillable = [

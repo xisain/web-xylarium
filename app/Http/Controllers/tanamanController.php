@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pengeringan;
+use App\Models\pengeringan;w
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use App\Models\Tanaman;
+use App\Models\tanaman;
 use App\Models\penomoranKoleksi;
 use App\Models\pbtk;
 use App\Models\pnptk;
@@ -27,7 +27,7 @@ class TanamanController extends Controller
      */
     public function index(Request $request)
 {
-    $tanamans = Tanaman::get(); // Fetch all data for DataTable
+    $tanamans = tanaman::get(); // Fetch all data for DataTable
 
     return view('tanaman.index', [
         'tanamans' => $tanamans,
@@ -75,29 +75,29 @@ class TanamanController extends Controller
     public function show(string $id): View
     {
         $tanaman = Tanaman::findOrFail($id);
-        $pengeringan = Pengeringan::where('tanaman_id', $id)->get(); 
-        $pembuatanBahanKoleksi = PembuatanBahanKoleksi::where('tanaman_id', $id)->get(); 
-        $polatrapesium = Polatrapesium::where('tanaman_id', $id)->get(); 
-        $pbtk = Pbtk::where('tanaman_id', $id)->get(); 
-        $pnptk = Pnptk::where('tanaman_id', $id)->get(); 
-        $dokumentasiKoleksi = DokumentasiKoleksi::where('tanaman_id', $id)->get(); 
-        $anatomiMikroskopis = AnatomiMikroskopis::where('tanaman_id', $id)->get(); 
-        $anatomiMakroskopis = AnatomiMakroskopis::where('tanaman_id', $id)->get(); 
-        
+        $pengeringan = Pengeringan::where('tanaman_id', $id)->get();
+        $pembuatanBahanKoleksi = PembuatanBahanKoleksi::where('tanaman_id', $id)->get();
+        $polatrapesium = Polatrapesium::where('tanaman_id', $id)->get();
+        $pbtk = Pbtk::where('tanaman_id', $id)->get();
+        $pnptk = Pnptk::where('tanaman_id', $id)->get();
+        $dokumentasiKoleksi = DokumentasiKoleksi::where('tanaman_id', $id)->get();
+        $anatomiMikroskopis = AnatomiMikroskopis::where('tanaman_id', $id)->get();
+        $anatomiMakroskopis = AnatomiMakroskopis::where('tanaman_id', $id)->get();
+
         return view('tanaman.show', compact(
-            'tanaman', 
-            'pengeringan', 
-            'pembuatanBahanKoleksi', 
-            'polatrapesium', 
-            'pbtk', 
-            'pnptk', 
-            'dokumentasiKoleksi', 
-            'anatomiMikroskopis', 
+            'tanaman',
+            'pengeringan',
+            'pembuatanBahanKoleksi',
+            'polatrapesium',
+            'pbtk',
+            'pnptk',
+            'dokumentasiKoleksi',
+            'anatomiMikroskopis',
             'anatomiMakroskopis'
         ));
     }
-    
-    
+
+
 
     /**
      * Show the form for editing the specified resource.

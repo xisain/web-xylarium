@@ -27,10 +27,10 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    // Route Setiap Formulir & sudah selesai 
+    // Route Setiap Formulir & sudah selesai
     Route::resource('/tanaman', App\Http\Controllers\tanamanController::class); // 0
     Route::resource('/penerimaan', \App\Http\Controllers\penerimaanController::class); // 1 & 2
-    Route::resource('/penomorankoleksi', App\Http\Controllers\penomorankoleksiController::class);// 3
+    Route::resource('/penomorankoleksi', App\Http\Controllers\penomoranKoleksiController::class);// 3
     Route::resource('/pengeringan', App\Http\Controllers\pengeringanController::class); // 4
     Route::resource('/pembuatan-bahan-koleksi', App\Http\Controllers\pembuatanBahanKoleksiController::class); // 5
     Route::resource('/pola-trapesium', App\Http\Controllers\polaTrapesiumController::class); // 6
@@ -43,15 +43,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/penyimpanan', App\Http\Controllers\penyimpananController::class); // 13
     Route::resource('/inspeksi', App\Http\Controllers\inspeksiController::class); // 14
     Route::resource('/pemeliharaan', App\Http\Controllers\pemeliharaanController::class); // 15
-    // Dalam Pengerjaan 
-    
+    // Dalam Pengerjaan
+
     // Define routes to fetch pengeringan and pendinginan records
     Route::get('/getPengeringan/{tanaman_id}', [App\Http\Controllers\pemeliharaanController::class, 'getPengeringanByTanaman']);
     Route::get('/getPendinginan/{tanaman_id}', [App\Http\Controllers\pemeliharaanController::class, 'getPendinginanByTanaman']);
 
-    
-    // Export 
-    Route::get('penerimaan/export/{withStatus}', [App\Http\Controllers\PenerimaanController::class, 'export'])->name('penerimaan.export'); // Formulir 1 dan 2 Dengan status atau tidak 
+
+    // Export
+    Route::get('penerimaan/export/{withStatus}', [App\Http\Controllers\PenerimaanController::class, 'export'])->name('penerimaan.export'); // Formulir 1 dan 2 Dengan status atau tidak
     Route::get('penomorankoleksi-export', [App\Http\Controllers\penomoranKoleksiController::class, 'export'])->name('penomoran.export'); // Formulir 3
     Route::get('/pengeringan-export', [App\Http\Controllers\pengeringanController::class,'export'])->name('pengeringan.export'); // Formulir 4
     Route::get('/pembuatan-bahan-koleksi-export', [App\Http\Controllers\pembuatanBahanKoleksiController::class,'export'])->name('pembuatan-bahan-koleksi.export'); // formulir 5

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pengeringan;w
+use App\Models\pengeringan;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\tanaman;

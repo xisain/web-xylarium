@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
             <label for="nama_tanaman">Nama Tanaman:</label>
-            <input type="text" class="form-control" id="nama_tanaman" name="nama_tanaman" readonly>
+            <input type="text" class="form-control" id="nama_tanaman" name="nama_tanaman">
         </div>
         <div class="form-group">
             <label for="suku">Suku:</label>

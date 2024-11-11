@@ -14,7 +14,7 @@ class pendinginanController extends Controller
      */
     public function index()
     {
-        $pendinginans = Pendinginan::all();
+        $pendinginans = pendinginan::all();
         return view('pendinginan.index', compact('pendinginans'));
     }
 
@@ -41,7 +41,7 @@ class pendinginanController extends Controller
             'tanaman_id' => 'required|exists:tanamen,id',
             'author_id' => 'required|exists:users,id',
         ]);
-        $pendinginan = Pendinginan::create($validateData);
+        $pendinginan = pendinginan::create($validateData);
         return redirect()->route('pendinginan.index')->with('success', 'Data added successfully');
     }
 

@@ -74,15 +74,15 @@ class TanamanController extends Controller
      */
     public function show(string $id): View
     {
-        $tanaman = Tanaman::findOrFail($id);
-        $pengeringan = Pengeringan::where('tanaman_id', $id)->get();
-        $pembuatanBahanKoleksi = PembuatanBahanKoleksi::where('tanaman_id', $id)->get();
-        $polatrapesium = Polatrapesium::where('tanaman_id', $id)->get();
-        $pbtk = Pbtk::where('tanaman_id', $id)->get();
-        $pnptk = Pnptk::where('tanaman_id', $id)->get();
-        $dokumentasiKoleksi = DokumentasiKoleksi::where('tanaman_id', $id)->get();
-        $anatomiMikroskopis = AnatomiMikroskopis::where('tanaman_id', $id)->get();
-        $anatomiMakroskopis = AnatomiMakroskopis::where('tanaman_id', $id)->get();
+        $tanaman = tanaman::findOrFail($id);
+        $pengeringan = pengeringan::where('tanaman_id', $id)->get();
+        $pembuatanBahanKoleksi = pembuatanBahanKoleksi::where('tanaman_id', $id)->get();
+        $polatrapesium = polatrapesium::where('tanaman_id', $id)->get();
+        $pbtk = pbtk::where('tanaman_id', $id)->get();
+        $pnptk = pnptk::where('tanaman_id', $id)->get();
+        $dokumentasiKoleksi = dokumentasiKoleksi::where('tanaman_id', $id)->get();
+        $anatomiMikroskopis = anatomiMikroskopis::where('tanaman_id', $id)->get();
+        $anatomiMakroskopis = anatomiMakroskopis::where('tanaman_id', $id)->get();
 
         return view('tanaman.show', compact(
             'tanaman',
@@ -104,7 +104,7 @@ class TanamanController extends Controller
      */
     public function edit(string $id): View
     {
-        $tanaman = Tanaman::findOrFail($id);
+        $tanaman = tanaman::findOrFail($id);
         return view('tanaman.edit', compact('tanaman'));
     }
 
@@ -122,7 +122,7 @@ class TanamanController extends Controller
             'keterangan' => 'nullable|string',
         ]);
 
-        $tanaman = Tanaman::findOrFail($id);
+        $tanaman = tanaman::findOrFail($id);
         $tanaman->update($validatedData);
 
         return redirect()->route('tanaman.index')->with('success', 'Tanaman berhasil diperbarui!');
@@ -133,7 +133,7 @@ class TanamanController extends Controller
      */
     public function destroy(string $id)
     {
-        $tanaman = Tanaman::findOrFail($id);
+        $tanaman = tanaman::findOrFail($id);
         $tanaman->delete();
         return redirect()->route('tanaman.index')->with('success', 'Tanaman berhasil dihapus!');
     }

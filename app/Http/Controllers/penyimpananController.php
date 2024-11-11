@@ -49,14 +49,14 @@ class penyimpananController extends Controller
         'keterangan' => 'nullable|string|max:1000',
         'author_id' => 'required|exists:users,id',
     ]);
-    
+
     // Convert 'on' to true and anything else to false for boolean fields
     $booleanFields = [
         'tersimpan_koleksi_preparat_sayatan',
         'tersimpan_koleksi_preparat_serat',
         'tersimpan_koleksi_serbuk'
     ];
-    
+
     foreach ($booleanFields as $field) {
         if (isset($validatedData[$field])) {
             $validatedData[$field] = $validatedData[$field] === 'on' ? true : false;
@@ -64,13 +64,13 @@ class penyimpananController extends Controller
             $validatedData[$field] = false;
         }
     }
-    
+
     // Create a new record in the penyimpanans table
-    $penyimpanan = Penyimpanan::create($validatedData);
-    
+    $penyimpanan = penyimpanan::create($validatedData);
+
     // Redirect back to the index page with a success message
     return redirect()->route('penyimpanan.index')->with('success', 'Data penyimpanan berhasil disimpan.');
-    
+
 }
 
 

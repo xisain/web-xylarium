@@ -18,7 +18,7 @@ class pembuatanBahanKoleksiController extends Controller
      */
     public function index(): View
     {
-        $pembuatanBahanKoleksi = PembuatanBahanKoleksi::with(['tanaman', 'User'])->get();
+        $pembuatanBahanKoleksi = pembuatanBahanKoleksi::with(['tanaman', 'User'])->get();
         return view('pembuatanBahanKoleksi.index', compact('pembuatanBahanKoleksi'));
     }
     public function export(){

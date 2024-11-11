@@ -58,7 +58,7 @@ class pnptkController extends Controller
             "author_id" => "required|exists:users,id",
             "keterangan" => 'nullable|string',
         ]);
-        $pnptk = Pnptk::create($validateData);
+        $pnptk = pnptk::create($validateData);
         return redirect()->route('pnptk.index')->with('success','');
     }
 

@@ -20,23 +20,23 @@ class pemeliharaanController extends Controller
     }
     public function getPengeringanByTanaman($tanaman_id)
     {
-        $pengeringans = Pengeringan::where('tanaman_id', $tanaman_id)->get();
+        $pengeringans = pengeringan::where('tanaman_id', $tanaman_id)->get();
         return response()->json($pengeringans);
     }
-    
+
     public function getPendinginanByTanaman($tanaman_id)
     {
-        $pendinginans = Pendinginan::where('tanaman_id', $tanaman_id)->get();
+        $pendinginans = pendinginan::where('tanaman_id', $tanaman_id)->get();
         return response()->json($pendinginans);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
         $tanamans = tanaman::with(['pengeringan','pendinginan'])->get();
-        
+
         return view('pemeliharaan.create', compact('tanamans'));
     }
 

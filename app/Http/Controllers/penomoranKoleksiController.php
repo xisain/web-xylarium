@@ -26,7 +26,7 @@ class penomoranKoleksiController extends Controller
     public function index(): View
     {
 
-        $penomoran = PenomoranKoleksi::with('penerimaan')->with('user')->get();
+        $penomoran = penomoranKoleksi::with('penerimaan')->with('user')->get();
         return view('penomorankoleksi.index', compact('penomoran'));
     }
 
@@ -43,7 +43,7 @@ class penomoranKoleksiController extends Controller
         $paddedNomorKoleksi = str_pad($newNomorKoleksi, 6, '0', STR_PAD_LEFT);
 
         // Fetch the penerimaan with status 'layak'
-        $penerimaan = Penerimaan::where('status', 'layak')->get();
+        $penerimaan = penerimaan::where('status', 'layak')->get();
 
         // Pass the data to the view
         return view('penomorankoleksi.create', [

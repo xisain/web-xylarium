@@ -13,16 +13,16 @@ class pengeringan extends Model
     }
 
     public function tanaman(){
-        return $this->belongsTo(Tanaman::class);
+        return $this->belongsTo(tanaman::class);
     }
 
     use HasFactory;
     protected $fillable = [
-        'tanggal_masuk', 
+        'tanggal_masuk',
         'tanggal_keluar',
         'tanaman_id',
         'user_id',
         'keterangan',
     ];
-    
+
 }

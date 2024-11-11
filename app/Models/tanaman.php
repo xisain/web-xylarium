@@ -12,7 +12,7 @@ class Tanaman extends Model
 
     public function penerimaan()
     {
-        return $this->belongsTo(Penerimaan::class);
+        return $this->belongsTo(penerimaan::class);
     }
 
     public function user()

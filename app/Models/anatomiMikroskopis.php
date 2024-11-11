@@ -27,11 +27,11 @@ class anatomiMikroskopis extends Model
 
     public function tanaman()
     {
-        return $this->belongsTo(Tanaman::class, 'tanaman_id');
+        return $this->belongsTo(tanaman::class, 'tanaman_id');
     }
     public function user()
     {
         return $this->belongsTo(User::class, 'author_id');
     }
-    
+
 }

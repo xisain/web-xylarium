@@ -10,7 +10,7 @@ class penomoranKoleksi extends Model
     protected $table = 'penomoran_koleksis';
     public function penerimaan()
     {
-        return $this->belongsTo(Penerimaan::class);
+        return $this->belongsTo(penerimaan::class);
     }
     public function user()
     {

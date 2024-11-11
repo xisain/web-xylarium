@@ -11,7 +11,7 @@ class pendinginan extends Model
     protected $table = 'pendinginans';
     public function tanaman()
     {
-        return $this->belongsTo(Tanaman::class);
+        return $this->belongsTo(tanaman::class);
     }
     public function user()
     {

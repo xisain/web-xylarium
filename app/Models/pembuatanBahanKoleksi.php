@@ -10,7 +10,7 @@ class pembuatanBahanKoleksi extends Model
     use HasFactory;
     protected $table = 'pembuatan_bahan_koleksis';
    public function tanaman(){
-        return $this->belongsTo(Tanaman::class, 'tanaman_id');
+        return $this->belongsTo(tanaman::class, 'tanaman_id');
     }
 
     public function user()

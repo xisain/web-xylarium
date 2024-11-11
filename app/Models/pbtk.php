@@ -24,6 +24,6 @@ class pbtk extends Model
         return $this->belongsTo(User::class);
     }
     public function tanaman(){
-        return $this->belongsTo(Tanaman::class);
+        return $this->belongsTo(tanaman::class);
     }
 }

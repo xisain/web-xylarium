@@ -11,7 +11,7 @@ class penerimaan extends Model
     protected $table = 'penerimaans';
     public function penomoranKoleksi()
     {
-        return $this->hasOne(PenomoranKoleksi::class);
+        return $this->hasOne(penomoranKoleksi::class);
     }
     protected $fillable = [
         'nama_tanaman',

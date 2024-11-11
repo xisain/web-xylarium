@@ -9,7 +9,7 @@ class polatrapesium extends Model
 {
     use HasFactory;
     protected $table = 'polatrapesia';
-    
+
     protected $fillable = [
         'tanggal',
         'tanaman_id',
@@ -24,7 +24,7 @@ class polatrapesium extends Model
         return $this->belongsTo(User::class);
     }
    public function tanaman(){
-        return $this->belongsTo(Tanaman::class);
+        return $this->belongsTo(tanaman::class);
     }
 
 }

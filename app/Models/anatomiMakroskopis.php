@@ -21,7 +21,7 @@ class anatomiMakroskopis extends Model
         return $this->belongsTo(User::class,"author_id");
     }
     public function tanaman(){
-        return $this->belongsTo(Tanaman::class);
+        return $this->belongsTo(tanaman::class);
     }
 
 }

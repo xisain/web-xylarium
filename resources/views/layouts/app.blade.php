@@ -22,7 +22,7 @@
 
         <nav class="navbar navbar-expand-md navbar-light {{ request()->is('/') ? 'bg-green-700' : 'bg-white' }} shadow-sm">
             <div class="container">
-                <a class="navbar-brand text-white" href="{{ url('/home') }}">
+                <a class="navbar-brand {{ request()->is('/') ? 'text-white' : 'text-black'}}" href="{{ url('/home') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

@@ -29,9 +29,9 @@ class PenerimaanExport implements FromQuery, WithHeadings
               ->whereYear('tanggal_terima', $currentYear);
 
         if (!$this->withStatus) {
-            $query->select('nama_tanaman', 'suku', 'habitus', 'tempat_asal', 'tanggal_terima', 'xylarium_log', 'xylarium_lempengan', 'jumlah_material', 'Koordinat', 'keterangan');
+            $query->select('nama_tanaman', 'suku', 'habitus', 'tempat_asal', 'tanggal_terima', 'xylarium_log', 'xylarium_lempeng', 'jumlah_material', 'Koordinat', 'keterangan');
         } else {
-            $query->select('nama_tanaman', 'suku', 'habitus', 'tempat_asal', 'tanggal_terima', 'xylarium_log', 'xylarium_lempengan', 'jumlah_material', 'Koordinat', 'keterangan', 'status');
+            $query->select('nama_tanaman', 'suku', 'habitus', 'tempat_asal', 'tanggal_terima', 'xylarium_log', 'xylarium_lempeng', 'jumlah_material', 'Koordinat', 'keterangan', 'status');
         }
 
         return $query;

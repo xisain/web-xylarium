@@ -56,9 +56,7 @@
 <section id="main" class="relative w-full h-screen overflow-hidden flex flex-row">
     <div class="relative text-center z-30 flex flex-col justify-center items-center w-full md:w-1/2 px-6 md:px-12 bg-green-600">
         <h1 class="text-4xl md:text-6xl font-bold text-white" id="awal"></h1>
-        @auth
-        <p class="text-lg md:text-2xl text-white mt-4"id="kedua"></p>
-        @endauth
+        <p class="text-lg md:text-2xl text-white mt-4"id="tengah"></p>
         <p class="text-lg md:text-2xl text-white mt-4"id="terakhir"></p>
         <div class="relative mt-12">
 
@@ -105,8 +103,8 @@
         typeSpeed: 50,
         onComplete: function() {
             // Start the second typing effect after the first is done
-            var typed2 = new Typed('#kedua', {
-                strings: ['Halo, {{ Auth::User()->name }}!'],
+            var typed2 = new Typed('#tengah', {
+                strings: ['Halo'],
                 showCursor: false,
                 typeSpeed: 50,
                 onComplete: function() {

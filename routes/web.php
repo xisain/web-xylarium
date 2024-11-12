@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     // Export
-    Route::get('penerimaan/export/{withStatus}', [App\Http\Controllers\PenerimaanController::class, 'export'])->name('penerimaan.export'); // Formulir 1 dan 2 Dengan status atau tidak
+    Route::get('penerimaan/export/{withStatus}', [App\Http\Controllers\penerimaanController::class, 'export'])->name('penerimaan.export'); // Formulir 1 dan 2 Dengan status atau tidak
     Route::get('penomorankoleksi-export', [App\Http\Controllers\penomoranKoleksiController::class, 'export'])->name('penomoran.export'); // Formulir 3
     Route::get('/pengeringan-export', [App\Http\Controllers\pengeringanController::class,'export'])->name('pengeringan.export'); // Formulir 4
     Route::get('/pembuatan-bahan-koleksi-export', [App\Http\Controllers\pembuatanBahanKoleksiController::class,'export'])->name('pembuatan-bahan-koleksi.export'); // formulir 5

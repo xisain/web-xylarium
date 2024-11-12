@@ -106,7 +106,7 @@
         onComplete: function() {
             // Start the second typing effect after the first is done
             var typed2 = new Typed('#kedua', {
-                strings: ['Halo, {{ Auth::user()->name }}!'],
+                strings: ['Halo, {{ Auth::User()->name }}!'],
                 showCursor: false,
                 typeSpeed: 50,
                 onComplete: function() {

@@ -18,7 +18,7 @@ class PenerimaanExport implements FromQuery, WithHeadings
 
     public function query()
     {
-        $query = Penerimaan::query();
+        $query = penerimaan::query();
 
         // Get current month and year
         $currentMonth = Carbon::now()->month;

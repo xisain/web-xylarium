@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Species;
+use App\Models\species;
 use App\Http\Resources\speciesRes;
 use Carbon\Carbon;
 
@@ -20,7 +20,7 @@ class SpesiesController extends Controller
 
    // Store new species
    public function store(Request $request)
-   {    
+   {
        $validatedData = $request->validate([
            'nama' => 'required|string',
            'genera' => 'required|string',
@@ -42,15 +42,15 @@ class SpesiesController extends Controller
    // Show single species by ID
    public function show($id)
    {
-    $species = Species::find($id);
-        
+    $species = species::find($id);
+
     if (!$species) {
         return response()->json(['message' => 'Species not found'], 404);
     }
 
     return response()->json($species);
 }
-   
+
 
    // Search species by name and genera
    public function getSearchNama(Request $request)
@@ -59,7 +59,7 @@ class SpesiesController extends Controller
     $nama = $request->query('nama');
 
     // Build the query for the 'species' model
-    $query = Species::query();
+    $query = species::query();
 
     // Add filter for 'nama'
     if ($nama) {
@@ -88,7 +88,7 @@ class SpesiesController extends Controller
    // Update species
    public function update(Request $request, $id)
    {
-       $species = Species::findOrFail($id);
+       $species = species::findOrFail($id);
 
        $validatedData = $request->validate([
            'nama' => 'sometimes|required|string',
@@ -111,7 +111,7 @@ class SpesiesController extends Controller
    // Delete species
    public function destroy($id)
    {
-       $species = Species::findOrFail($id);
+       $species = species::findOrFail($id);
        $species->delete();
 
        return response()->json(null, 204);

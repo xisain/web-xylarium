@@ -39,13 +39,13 @@ class pnptkExport implements FromCollection, WithHeadings, WithStyles
 
     public function headings(): array {
         return [
-            ['Nomor', '', 'Nama Jenis', 'Suku', 'Xylarium Terketok', '', '', '', '', '', '', 'Keterangan', 'Pelaksana',],
+            ['Nomor', 'Nomor Ketuk', 'Nama Jenis', 'Suku', 'Xylarium Terketok', '', '', '', '', '', '', 'Keterangan', 'Pelaksana',],
             ['', '', '', '', '', '', '', '', 'Preparat', '', '', '', ''],
-            ['Urut', 'Koleksi', '', '', 'Trapesium', 'Utuh', 'Dekat Kulit', 'Serbuk', 'Sayatan', 'Serat', 'Potongan', '', '', '']
+            ['Urut', 'Koleksi', '', '', 'Trapesium', 'Utuh', 'Dekat Kulit', 'Serbuk', 'Sayatan', 'Serat','Potongan',]
         ];
     }
-    
-    
+
+
 
     public function styles(Worksheet $sheet)
     {
@@ -55,10 +55,10 @@ class pnptkExport implements FromCollection, WithHeadings, WithStyles
         $sheet->mergeCells('C1:C3'); // Nama Jenis
         $sheet->mergeCells('D1:D3'); // Suku
         $sheet->mergeCells('E1:K1'); // Xylarium Terketok
-        $sheet->mergeCells('I2:K2'); // Preparat
+        $sheet->mergeCells('I2:J2'); // Preparat
         $sheet->mergeCells('L1:L3'); // Keterangan
         $sheet->mergeCells('M1:M3'); // Pelaksana
-    
+
         // Apply styles for headers
         $sheet->getStyle('A1:N3')->applyFromArray([
             'font' => [
@@ -75,6 +75,6 @@ class pnptkExport implements FromCollection, WithHeadings, WithStyles
             ],
         ]);
     }
-    
-    
+
+
 }

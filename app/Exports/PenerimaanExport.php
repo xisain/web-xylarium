@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Penerimaan;
+use App\Models\penerimaan;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Carbon\Carbon;

@@ -3,9 +3,10 @@
 namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;  
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class pembuatanBahanKoleksiExport implements FromCollection, WithHeadings
+class pembuatanBahanKoleksiExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
     protected $pembuatanBahanKoleksi;
 
@@ -27,11 +28,11 @@ class pembuatanBahanKoleksiExport implements FromCollection, WithHeadings
                 'Nama Jenis' => $item->tanaman->jenis,
                 'Suku' => $item->tanaman->famili,
                 'Tempat Asal' => $item->tanaman->lokasi,
-                'Kegiatan Gergaji' => $item->kegiatan_gergaji, 
+                'Kegiatan Gergaji' => $item->kegiatan_gergaji,
                 'Kegiatan Hamplas' => $item->kegiatan_hamplas,
                 'Jumlah Potongan' => $item->jumlah_potongan,
                 'Keterangan' => $item->keterangan,
-                'Pelaksana' => $item->user->name, 
+                'Pelaksana' => $item->user->name,
             ];
         });
     }

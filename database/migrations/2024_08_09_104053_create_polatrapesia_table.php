@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('terpola_utuh');
             $table->string('terpola_kubus');
             $table->string('terpola_jumlah');
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

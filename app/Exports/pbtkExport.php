@@ -3,15 +3,16 @@
 namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class PbtkExport implements FromCollection, WithHeadings, WithStyles, WithColumnWidths
+class PbtkExport implements FromCollection, WithHeadings, WithStyles, ShouldAutoSize
 {
     protected $pbtk;
-    
+
     public function __construct($pbtk)
     {
         $this->pbtk = $pbtk;
@@ -89,21 +90,5 @@ class PbtkExport implements FromCollection, WithHeadings, WithStyles, WithColumn
 
 
 
-    public function columnWidths(): array
-    {
-        return [
-            'A' => 5,
-            'B' => 20,
-            'C' => 15,
-            'D' => 20,
-            'E' => 20,
-            'F' => 15,
-            'G' => 15,
-            'H' => 15,
-            'I' => 15,
-            'J' => 10,
-            'K' => 10,
-            'L' => 25,
-        ];
-    }
+
 }

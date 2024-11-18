@@ -30,3 +30,5 @@ Route::get('/spesies/{id?}', [SpesiesController::class, 'show']);
 Route::get('/penerimaan-tanaman', [chartdata::class, 'getPenerimaanTanaman']);
 Route::get('/total-tanaman', [chartdata::class, 'getTotalTanaman'])->name('total.tanaman');
 Route::get('/tanaman-penomoran', [chartdata::class, 'getTanamanPenomoran']);
+Route::get('/famili',[chartdata::class,'getFamiliCounts']);
+Route::get('/getCountPenerimaanDanKoleksi',[chartdata::class,'getCountPenerimaanDanKoleksi']);

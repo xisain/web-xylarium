@@ -5,8 +5,9 @@ namespace App\Exports;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use App\Models\pengeringan;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class pengeringanExport implements FromCollection, WithHeadings
+class pengeringanExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
     protected $pengeringan;
 

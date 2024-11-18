@@ -79,11 +79,43 @@ class chartdata extends Controller
     {
         // Assuming 'tanaman_id' is the common column in both tables
         $count = DB::table('xylarium.penerimaans')
-                    ->join('xylarium.penomoran_koleksis', 'xylarium.penerimaans.id', '=', 'xylarium.penomoran_koleksis.penerimaan_id') // Use the correct column names
-                    ->distinct('xylarium.penerimaans.id') // Count distinct tanaman IDs
-                    ->count('xylarium.penerimaans.id');
+            ->join('xylarium.penomoran_koleksis', 'xylarium.penerimaans.id', '=', 'xylarium.penomoran_koleksis.penerimaan_id') // Use the correct column names
+            ->distinct('xylarium.penerimaans.id') // Count distinct tanaman IDs
+            ->count('xylarium.penerimaans.id');
 
         return response()->json(['count' => $count]);
     }
+    public function getFamiliCounts()
+{
+    $familiCounts = DB::table('tanamen')
+        ->select('famili', DB::raw('count(*) as count_per_famili'))
+        ->groupBy('famili')
+        ->orderBy('count_per_famili','desc')
+        ->get()
+        ->map(function ($item) {
+            if (empty($item->famili)) {
+                $item->famili = 'species dubius';
+            }
+            return $item;
+        });
+
+    return response()->json($familiCounts, 200);
+}
+public function getCountPenerimaanDanKoleksi()
+{
+    // Get counts for penerimaan entries with status 'belum di cek', 'layak', and 'tidak layak'
+    $counts = DB::table('penerimaans')
+        ->leftJoin('tanamen', 'penerimaans.nama_tanaman', '=', 'tanamen.jenis')
+        ->select(
+            DB::raw('sum(case when penerimaans.status = "belum di cek" then 1 else 0 end) as belum_cek'),
+            DB::raw('sum(case when penerimaans.status = "layak" then 1 else 0 end) as layak'),
+            DB::raw('sum(case when penerimaans.status = "tidak" then 1 else 0 end) as tidak_layak')
+        )
+        ->get();
+
+    return response()->json($counts, 200);
+}
+
+
 
 }

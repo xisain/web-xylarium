@@ -1,11 +1,14 @@
 @extends('layouts.app')
+@section('heading', 'Pola Trapesium Xylarium')
 @section('content')
-    <div class="container">
-        <h2>
-            Pola Trapesium Xylarium
-        </h2>
-        <a href="{{ route('pola-trapesium.create') }}" class="btn btn-primary mb-3">Tambahkan Data</a>
-        <table class="table table-bordered">
+<section class="row">
+    <div class="card shadow-sm">
+        <div class="card-header">
+
+        </div>
+        <div class="card-body">
+            <a href="{{ route('pola-trapesium.create') }}" class="btn btn-primary mb-3">Tambahkan Data</a>
+        <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
             <thead>
                 <tr>
                     <th colspan="2" class="text-center" style="100px">Nomor</th>
@@ -50,23 +53,7 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        @if(Session::has('success'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil',
-            text: "{{ Session::get('success') }}"
-        });
-        @endif
-
-        @if(Session::has('error'))
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: "{{ Session::get('error') }}"
-        });
-        @endif
-    </script>
+</section>
 @endsection

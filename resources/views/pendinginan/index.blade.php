@@ -1,9 +1,11 @@
 @extends('layouts.app')
+@section('heading', 'Pendingingan')
 @section('content')
-    <div class="container-fluid">
-        <h4>Pendinginan</h4>
+<section class="row">
+    <div class="card shadow">
+        <div class="card-body">
         <a href="{{ route('pendinginan.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
-        <table class="table table-bordered">
+        <table class="table table-striped w-100 table-sm" id="datatable">
             <thead>
                 <tr>
                     <th colspan="2">Nomor</th>
@@ -49,4 +51,6 @@
             </tbody>
         </table>
     </div>
+    </div>
+</section>
 @endsection

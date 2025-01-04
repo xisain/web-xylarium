@@ -1,10 +1,12 @@
 @extends('layouts.app')
+@section('heading','Inspeksi')
 @section('content')
-    <div class="container-fluid p-5">
-        <h3>Inspeksi</h3>
+<section class="row">
+    <div class="card shadow">
+      <div class="card-body">
         <a href="{{ route('inspeksi.create') }}" class="btn btn-primary mb-3">Data Baru</a>
         <button href="{{ route('inspeksi.create') }}" class="btn btn-success mb-3">Unduh Data</button>
-        <table class="table table-bordered">
+        <table class="table table-striped w-100 table-sm" id="datatable">
             <thead>
                 <tr>
                     <th colspan=2>Nomor</th>
@@ -36,7 +38,7 @@
             </thead>
             <tbody>
                 @foreach ($inspeksis as $index => $inspeksi)
-                    
+
                         <td>
                             {{ $index+1 }}
                             </td>
@@ -69,27 +71,11 @@
                             <td>{{ $inspeksi->kubus}}</td>
                             <td>{{ $inspeksi->keterangan}}</td>
                             <td>{{ $inspeksi->user->name}}</td>
-                    
+
                 @endforeach
             </tbody>
         </table>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        @if(Session::has('success'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil',
-            text: "{{ Session::get('success') }}"
-        });
-        @endif
-    
-        @if(Session::has('error'))
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: "{{ Session::get('error') }}"
-        });
-        @endif
-    </script>
+    </div>
+</section>
 @endsection

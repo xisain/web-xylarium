@@ -1,9 +1,11 @@
 @extends('layouts.app')
+@section('heading', 'Anatomi Makroskopis')
 @section('content')
-<div class="container">
-    <h2>Anatomi Makroskopis</h2>
-    <a href="{{ route('anatomi-makroskopis.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
-    <table class="table table-bordered">
+<section class="row">
+    <div class="card shadow">
+        <div class="card-body">
+            <a href="{{ route('anatomi-makroskopis.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
+    <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
         <thead>
             <tr>
                 <th class="text-center"colspan="2">Nomor</th>
@@ -66,5 +68,7 @@
             @endforeach
         </tbody>
     </table>
-</div>
+        </div>
+    </div>
+</section>
 @endsection

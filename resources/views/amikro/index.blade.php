@@ -1,9 +1,11 @@
 @extends('layouts.app')
+@section('heading','Anatomi Mikroskopis')
 @section('content')
-<div class="container-fluid">
-    <h2>Anatomi Mikroskopis</h2>
+<section class="row">
+<div class="card shadow">
+    <div class="card-body">
     <a href="{{ route('anatomi-mikroskopis.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
-    <table class="table table-bordered">
+    <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
         <thead>
             <tr>
                 <th rowspan="2" colspan="2">Nomor</th>
@@ -97,4 +99,6 @@
         </tbody>
     </table>
 </div>
+</div>
+</section>
 @endsection

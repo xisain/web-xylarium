@@ -88,7 +88,7 @@ class penomoranKoleksiController extends Controller
     public function edit(string $id)
     {
         $penomoran = penomoranKoleksi::findOrfail($id);
-        return view("penomoranKoleksi.edit", compact("penomorankoleksi"));
+        return view("penomoranKoleksi.edit", compact("penomoran"));
     }
 
     /**

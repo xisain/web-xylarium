@@ -1,23 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
-
-    <!-- DataTables Bootstrap Integration CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-</head>
-<body>
-    @extends('layouts.app')
-
-    @section('content')
-    <div class="container">
-        <h1>Daftar Tanaman</h1>
-        <a href="{{ route('tanaman.create') }}" class="btn btn-primary">Tambah Tanaman</a>
-        <table id="tanamanTable" class="table table-bordered">
+@extends('layouts.app')
+@section('heading', 'Tanaman')
+@section('content')
+<section class="row">
+   <div class="card shadow-sm">
+    <div class="card-body">
+        <a href="{{ route('tanaman.create') }}" class="btn btn-primary mb-4">Tambah Tanaman</a>
+        <table id="datatable" class="table w-100 h-100 table-bordered table-striped">
             <thead>
                 <tr>
                     <th class="text-center">No Ketukan</th>
@@ -58,30 +46,6 @@
             </tbody>
         </table>
     </div>
-    @endsection
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            new DataTable('#tanamanTable',{
-                responsive:true,
-                rowReorder:{
-                    selector:'td:nth-child(2)'
-                }
-            })
-
-
-            // Toastr messages
-            @if(session()->has('success'))
-                toastr.success('{{ session('success') }}', 'BERHASIL!');
-            @elseif(session()->has('error'))
-                toastr.error('{{ session('error') }}', 'GAGAL!');
-            @endif
-        });
-    </script>
-</body>
-</html>
+   </div>
+</section>
+@endsection

@@ -1,10 +1,11 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
-        <h3>Dokumentasi Koleksi</h3>
-        <a href="{{ route('dokumentasi-koleksi.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
+<section class="row">
+    <div class="card shadow">
+        <div class="card-body">
+            <a href="{{ route('dokumentasi-koleksi.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
         <a href="{{ route('dokumentasi-koleksi.export') }}" class="btn btn-success mb-3">Unduh Data</a>
-        <table class="table table-bordered">
+        <table class="table table-striped w-100 table-sm table-bordered" id="datatable">
             <thead>
                 <tr>
                     <th colspan="2">Nomor</th>
@@ -60,5 +61,7 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
     </div>
+</section>
 @endsection

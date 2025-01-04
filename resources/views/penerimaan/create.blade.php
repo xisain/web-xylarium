@@ -1,8 +1,9 @@
 @extends('layouts.app')
+@section('heading', 'Penerimaan Baru')
 @section('content')
-<div class="container">
-    <h1 class="mt-5">Create Penerimaan</h1>
+<section class="row">
     @if ($errors->any())
+    <div class="col">
         <div class="alert alert-danger">
                 <ul class="mb-0">
                     @foreach ($errors->all() as $error)
@@ -10,59 +11,68 @@
                     @endforeach
                 </ul>
             </div>
-    @endif
-    <form action="{{ route('penerimaan.store') }}" method="POST">
-        @csrf
+    </div>
+        @endif
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-body">
+                <form action="{{ route('penerimaan.store') }}" method="POST">
+                    @csrf
 
-        <div class="form-group">
-            <label for="getTanaman">Nama Tanaman:</label>
-            <select class="form-control" id="getTanaman" name="getTanaman"></select>
+                    <div class="form-group">
+                        <label for="getTanaman">Nama Tanaman:</label>
+                        <select class="form-control" id="getTanaman" name="getTanaman"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama_tanaman">Nama Tanaman:</label>
+                        <input type="text" class="form-control" id="nama_tanaman" name="nama_tanaman" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="suku">Suku:</label>
+                        <input type="text" class="form-control" id="suku" name="suku" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="habitus">Habitus:</label>
+                        <input type="text" class="form-control" id="habitus" name="habitus" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tempat_asal">Tempat Asal:</label>
+                        <input type="text" class="form-control" id="tempat_asal" name="tempat_asal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal_terima">Tanggal Penerimaan:</label>
+                        <input type="date" class="form-control" name="tanggal_terima" id="tanggal_terima" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="xylarium_log">Xylarium Log:</label>
+                        <input type="text" class="form-control" id="xylarium_log" name="xylarium_log" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="xylarium_lempeng">Xylarium Lempengan:</label>
+                        <input type="text" class="form-control" id="xylarium_lempeng" name="xylarium_lempeng" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="jumlah_material">Jumlah Material:</label>
+                        <input type="text" class="form-control" id="jumlah_material" name="jumlah_material" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Koordinat">Koordinat:</label>
+                        <input type="text" class="form-control" id="Koordinat" name="Koordinat" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="keterangan">Keterangan:</label>
+                        <input type="text" class="form-control" id="keterangan" name="keterangan">
+                    </div>
+                    <input type="hidden" name="status" value="Belum di cek">
+                    <input type="hidden" name="author_id" value="{{ Auth::user()->id }}">
+                    <br>
+                    <button type="submit" class="btn btn-primary form-control">Submit</button>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="nama_tanaman">Nama Tanaman:</label>
-            <input type="text" class="form-control" id="nama_tanaman" name="nama_tanaman" required>
-        </div>
-        <div class="form-group">
-            <label for="suku">Suku:</label>
-            <input type="text" class="form-control" id="suku" name="suku" required>
-        </div>
-        <div class="form-group">
-            <label for="habitus">Habitus:</label>
-            <input type="text" class="form-control" id="habitus" name="habitus" required>
-        </div>
-        <div class="form-group">
-            <label for="tempat_asal">Tempat Asal:</label>
-            <input type="text" class="form-control" id="tempat_asal" name="tempat_asal" required>
-        </div>
-        <div class="form-group">
-            <label for="tanggal_terima">Tanggal Penerimaan:</label>
-            <input type="date" class="form-control" name="tanggal_terima" id="tanggal_terima" required>
-        </div>
-        <div class="form-group">
-            <label for="xylarium_log">Xylarium Log:</label>
-            <input type="text" class="form-control" id="xylarium_log" name="xylarium_log" required>
-        </div>
-        <div class="form-group">
-            <label for="xylarium_lempeng">Xylarium Lempengan:</label>
-            <input type="text" class="form-control" id="xylarium_lempeng" name="xylarium_lempeng" required>
-        </div>
-        <div class="form-group">
-            <label for="jumlah_material">Jumlah Material:</label>
-            <input type="text" class="form-control" id="jumlah_material" name="jumlah_material" required>
-        </div>
-        <div class="form-group">
-            <label for="Koordinat">Koordinat:</label>
-            <input type="text" class="form-control" id="Koordinat" name="Koordinat" required>
-        </div>
-        <div class="form-group">
-            <label for="keterangan">Keterangan:</label>
-            <input type="text" class="form-control" id="keterangan" name="keterangan">
-        </div>
-        <input type="hidden" name="status" value="Belum di cek">
-        <input type="hidden" name="author_id" value="{{ Auth::user()->id }}">
-        <button type="submit" class="btn btn-primary form-control">Submit</button>
-    </form>
-</div>
+    </div>
+</section>
+
 
 
 

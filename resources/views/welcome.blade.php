@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.landingpage')
 @section('content')
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">

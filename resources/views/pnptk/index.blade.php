@@ -1,11 +1,14 @@
 @extends('layouts.app')
+@section('heading', 'Pengetokan Nomor Pada Trapesium Koleksi')
 @section('content')
-    <div class="container">
-        <h3>PENGETOKAN NOMOR PADA TRAPESIUM KOLEKSI XYLARIUM </h3>
-        <a href="{{ route('pnptk.create') }}" class="btn btn-primary mb-3">Data Baru</a>
+<section class="row">
+    <div class="card shadow">
+        <div class="card-header"></div>
+        <div class="card-body">
+            <a href="{{ route('pnptk.create') }}" class="btn btn-primary mb-3">Data Baru</a>
         <a href="{{ route('pnptk.export') }}" class="btn btn-success mb-3">Unduh Data</a>
         {{-- Export --}}
-        <table class="table table-bordered">
+        <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
             <thead>
                 <tr>
                     <th colspan="2" class="text-center">Nomor</th>
@@ -59,5 +62,7 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
     </div>
+</section>
 @endsection

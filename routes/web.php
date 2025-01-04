@@ -22,7 +22,10 @@ Route::get('/penerimaan/export/{withStatus}', [\App\Http\Controllers\penerimaanC
 
 
 Auth::routes();
-
+Route::get('/getout', function () {
+    Auth::logout();
+    return redirect('/');
+});
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

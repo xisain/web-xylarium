@@ -1,8 +1,7 @@
 @extends('layouts.app')
-
+@section('heading','Dashboard Coming Soon')
 @section('content')
 <style>
-
     .card {
         height: 100%;
     }
@@ -13,54 +12,11 @@
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 {{-- Todo : Future Work --}}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <p class="card-text">Total Data Tanaman Saat Ini: </p>
-                    <h5 class="card-title" id="total_tanaman">< &nbsp;Angka&nbsp;> <i class="fa-brands fa-pagelines"></i></h5>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <p class="card-text">Total Data Pengeringan: <strong>75</strong></p>
-                    <h5 class="card-title">< &nbsp;Angka&nbsp;> <i class="fa-brands fa-pagelines"></i></h5>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <p class="card-text">Total Data Penyimpanan: <strong>50</strong></p>
-                    <h5 class="card-title">< &nbsp;Angka&nbsp;> <i class="fa-brands fa-pagelines"></i></h5>
-                </div>
-            </div>
-        </div>
-    </div>
+<section class="row">
 
-    <div class="row mt-2">
-        <!-- First Row of Charts -->
-        <div class="col-md-6">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Chart 1: Data Famili</h5>
-                    <canvas id="barChart"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Chart 2: Data Kelayakan</h5>
-                    <canvas id="pieChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+</section>
+
+
 
 <script>
     window.addEventListener('DOMContentLoaded', function() {

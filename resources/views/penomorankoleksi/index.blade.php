@@ -7,8 +7,8 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <a href="{{ route('penomorankoleksi.create') }}" class="btn btn-success mb-3">Penomoran Baru</a>
-                <a href="{{ route('penomoran.export') }}" class="btn btn-primary mb-3">Export Data</a>
+                <a href="{{ route('penomorankoleksi.create') }}" class="btn btn-primary mb-3">Penomoran Baru</a>
+                <a href="{{ route('penomoran.export') }}" class="btn btn-success mb-3">Export Data</a>
                 <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
                     <thead class="thead-dark">
                         <tr>

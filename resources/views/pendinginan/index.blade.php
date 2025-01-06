@@ -5,7 +5,7 @@
     <div class="card shadow">
         <div class="card-body">
         <a href="{{ route('pendinginan.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
-        <table class="table table-striped w-100 table-sm" id="datatable">
+        <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
             <thead>
                 <tr>
                     <th colspan="2">Nomor</th>

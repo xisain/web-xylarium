@@ -6,7 +6,7 @@
             <div class="card-body">
                 <a href="{{ route('pembuatan-bahan-koleksi.create') }}" class="btn btn-primary mb-4">Data Baru</a>
                 <a href="{{ route('pembuatan-bahan-koleksi.export') }}" class="btn btn-success mb-4">Unduh Data</a>
-                <table class="table table-striped w-100 table-sm" id="datatable">
+                <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -41,7 +41,7 @@
                                 <a class="btn btn-primary" href="{{ route('penerimaan.edit',$pbk->id) }}">Edit</a>
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button></td>
+                                <button type="submit" class="btn btn-danger ">Delete</button></td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -5,7 +5,7 @@
     <div class="card shadow">
         <div class="card-header"></div>
         <div class="card-body">
-            <a href="{{ route('pnptk.create') }}" class="btn btn-primary mb-3">Data Baru</a>
+            <a href="{{ route('pnptk.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
         <a href="{{ route('pnptk.export') }}" class="btn btn-success mb-3">Unduh Data</a>
         {{-- Export --}}
         <table class="table table-striped table-bordered w-100 table-sm" id="datatable">

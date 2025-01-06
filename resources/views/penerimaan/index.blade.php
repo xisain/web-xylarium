@@ -5,11 +5,11 @@
 <div class="container-fluid">
    <div class="card shadow-sm bg-white">
     <div class="card-body">
-        <a href="{{ route('penerimaan.create') }}" class="btn btn-primary mb-3">Create New Penerimaan</a>
+        <a href="{{ route('penerimaan.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
         <a class="btn btn-success mb-3" href="{{ route('penerimaan.export', 'without-status') }}">Export to Excel (Without Status)</a>
         <a class="btn btn-info mb-3" href="{{ route('penerimaan.export', 'with-status') }}">Export to Excel (With Status)</a>
         <br>
-        <table class="table table-striped table-bordered w-100 table-sm" id="dataTable">
+        <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
             <thead>
                 <tr>
                     <th rowspan="2">No</th>
@@ -61,7 +61,7 @@
                         <a class="btn btn-primary" href="{{ route('penerimaan.edit', $penerimaan->id) }}">Edit</a>
                         @csrf
                         @method('DELETE')
-                        <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $penerimaan->id }})">Delete</button>
+                        <button type="button" class="btn btn-danger delete-btn" onclick="confirmDelete({{ $penerimaan->id }})">Delete</button>
                     </form>
                 </td>
             </tr>
@@ -74,19 +74,5 @@
 </div>
 
 @endsection
-
 @section('scripts')
-<script>
-    $(document).ready(function() {
-        $('#dataTable').DataTable({
-            "paging": true,
-            "lengthChange": true,
-            "searching": true,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true
-        });
-    });
-</script>
 @endsection

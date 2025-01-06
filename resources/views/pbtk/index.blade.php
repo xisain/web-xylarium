@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('heading', 'PEMBUATAN BAHAN TRAPESIUM KOLEKSI XYLARIUM')
 @section('content')
 <section class="row">
     <div class="card shadow">
@@ -6,8 +7,8 @@
 
         </div>
         <div class="card-body">
-            <h3>PEMBUATAN BAHAN TRAPESIUM KOLEKSI XYLARIUM</h3>
-            <a href="{{ route('pbtk.create') }}" class="btn btn-success mb-3">Data Baru</a>
+
+            <a href="{{ route('pbtk.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
             <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
                 <thead>
                     <tr>

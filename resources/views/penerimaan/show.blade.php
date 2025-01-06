@@ -2,6 +2,8 @@
     <title>Detail {{ $penerimaan->nama_tanaman }}</title>
 
     @extends('layouts.app')
+    @section('heading', 'Detail \'' . $penerimaan->nama_tanaman . '\'')
+
     @section('content')
     <div class="container mt-5">
         <div class="card">
@@ -27,8 +29,8 @@
                      @endif
                 </p>
                 <p><strong>Author : </strong>{{ $penerimaan->user->name }}</p>
-                 
-               
+
+
             </div>
             <div class="card-footer">
                 <a class="btn btn-primary" href="{{ route('penerimaan.index') }}">Back to List</a>

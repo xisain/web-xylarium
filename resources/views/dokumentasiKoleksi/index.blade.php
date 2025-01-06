@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('heading', 'Dokumentasi Koleksi')
 @section('content')
 <section class="row">
     <div class="card shadow">

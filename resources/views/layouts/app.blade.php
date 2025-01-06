@@ -87,13 +87,29 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
         const sidebarElement = document.querySelector('.sidebar-wrapper');
-    if (sidebarElement) {
+        window.confirmDelete = function(id) {
+            Swal.fire({
+                title: 'Yakin Mau di Hapus?',
+                text: "Data Yang Dihapus tidak dapat di kembalikan",
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'Tidak',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
+        if (sidebarElement) {
         const ps = new PerfectScrollbar(sidebarElement, {
             wheelSpeed: 2,
             wheelPropagation: true,
             minScrollbarLength: 20
         });
-    }
+        }
         @if(Session::has('success'))
         Swal.fire({
             title: "Berhasil",
@@ -109,23 +125,7 @@
             icon: "error"
         });
         @endif
-        function confirmDelete(id) {
-            Swal.fire({
-                title: 'Yakin Mau di Hapus?',
-                text: "Data Yang Dihapus tidak dapat di kembalikan",
-                icon: 'warning',
-                showCancelButton: true,
-                cancelButtonText: 'Tidak',
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, Hapus'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                        document.getElementById('delete-form-' + id).submit();
-                }
-            });
 
-        }
         $("#datatable").DataTable({
            " responsive":true,
                 "rowReorder":{
@@ -135,7 +135,13 @@
             "lengthMenu": [
                 [10, 50, 75, -1],
                 [10, 50, 75, "All"]
-            ]
+            ],
+            language: {
+            url: "https://cdn.datatables.net/plug-ins/1.10.9/i18n/Indonesian.json" // Example: Indonesian localization
+        },
+
+        }).on('draw.dt', function () {
+            // confirmDelete();
         })
     });
     </script>

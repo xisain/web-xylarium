@@ -5,7 +5,7 @@
     <div class="card shadow">
         <div class="card-body">
             <a href="{{ route('pemeliharaan.create') }}" class="btn btn-primary mb-4">Data Baru</a>
-            <table class="table table-striped w-100 table-sm" id="datatable">
+            <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
                 <thead>
                     <tr>
                         <th colspan="2">Nomor</th>

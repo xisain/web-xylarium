@@ -4,9 +4,9 @@
 <section class="row">
     <div class="card shadow">
       <div class="card-body">
-        <a href="{{ route('inspeksi.create') }}" class="btn btn-primary mb-3">Data Baru</a>
+        <a href="{{ route('inspeksi.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
         <button href="{{ route('inspeksi.create') }}" class="btn btn-success mb-3">Unduh Data</button>
-        <table class="table table-striped w-100 table-sm" id="datatable">
+        <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
             <thead>
                 <tr>
                     <th colspan=2>Nomor</th>

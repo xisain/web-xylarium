@@ -7,7 +7,7 @@
             <div class="card-body">
                 <a href="{{ route('pengeringan.create') }}" class="btn btn-primary mb-3">Data Baru</a>
     <a href="{{ route('pengeringan.export') }}"class="btn btn-success mb-3">Unduh Data</a>
-    <table class="table table-striped w-100 table-sm" id="datatable">
+    <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
         <thead class="thead-dark">
         <tr>
             <th scope="col">Nomor ID</th>

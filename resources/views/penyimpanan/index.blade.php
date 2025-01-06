@@ -1,44 +1,42 @@
 @extends('layouts.app')
+@section('heading', 'Penyimpanan')
 @section('content')
 <section class="row">
     <div class="card shadow">
         <div class="card-body">
-
-
-            <h3>Tersimpan</h3>
             <a href="{{ route('penyimpanan.create') }}" class="btn btn-primary mb-3">Tambah data</a>
             <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
                 <thead>
                     <tr>
-                        <th colspan="2">Nomor</th>
-                        <th rowspan="4">Nama Jenis</th>
-                        <th rowspan="4">Suku</th>
-                        <th colspan="12">Kegiatan</th>
-                        <th rowspan="4">Keterangan</th>
-                        <th rowspan="4">Pelaksana</th>
+                        <th colspan="2"class="text-center">Nomor</th>
+                        <th rowspan="4"class="text-center">Nama Jenis</th>
+                        <th rowspan="4"class="text-center">Suku</th>
+                        <th colspan="12" class="text-center">Kegiatan</th>
+                        <th rowspan="4"class="text-center">Keterangan</th>
+                        <th rowspan="4"class="text-center">Pelaksana</th>
                     </tr>
                     <tr>
-                        <th rowspan="3">Urut</th>
-                        <th rowspan="3">Koleksi</th>
-                        <th colspan="8">Koleksi</th>
-                        <th colspan="4">Duplikat</th>
+                        <th rowspan="3"class="text-center">Urut</th>
+                        <th rowspan="3"class="text-center">Koleksi</th>
+                        <th colspan="8"class="text-center">Koleksi</th>
+                        <th colspan="4"class="text-center">Duplikat</th>
                     </tr>
                     <tr>
-                        <th rowspan="2">Trapesium</th>
-                        <th rowspan="2">Utuh</th>
-                        <th rowspan="2">Dekat Kulit</th>
-                        <th rowspan="2">Potongan</th>
-                        <th colspan="2">Preparat</th>
-                        <th rowspan="2">Kubus</th>
-                        <th rowspan="2">Serbuk</th>
-                        <th rowspan="2">Trapesium</th>
-                        <th rowspan="2">Utuh</th>
-                        <th rowspan="2">Dekat Kulit</th>
-                        <th rowspan="2">Potongan</th>
+                        <th rowspan="2"class="text-center">Trapesium</th>
+                        <th rowspan="2"class="text-center">Utuh</th>
+                        <th rowspan="2"class="text-center">Dekat Kulit</th>
+                        <th rowspan="2"class="text-center">Potongan</th>
+                        <th colspan="2"class="text-center">Preparat</th>
+                        <th rowspan="2"class="text-center">Kubus</th>
+                        <th rowspan="2"class="text-center">Serbuk</th>
+                        <th rowspan="2"class="text-center">Trapesium</th>
+                        <th rowspan="2"class="text-center">Utuh</th>
+                        <th rowspan="2"class="text-center">Dekat Kulit</th>
+                        <th rowspan="2"class="text-center">Potongan</th>
                     </tr>
                     <tr>
-                        <th>Sayatan</th>
-                        <th>Serat</th>
+                        <th class="text-center">Sayatan</th>
+                        <th class="text-center">Serat</th>
                     </tr>
 
                 </thead>

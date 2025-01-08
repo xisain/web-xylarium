@@ -2,17 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\pemeliharaanExport;
 use App\Models\pemeliharaan;
 use App\Models\tanaman;
 use App\Models\pendinginan;
 use App\Models\pengeringan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+
+
 
 class pemeliharaanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    public function export(){
+        
+        $currentMonth = Carbon::now()->month;
+        $currentYear = Carbon::now()->year;
+        $now = Carbon::now();
+        $formatDate = $now->format('d-m-Y-H:i:s');
+        $pemeliharaan = pemeliharaan::with(['tanaman','user','pengeringan','pendinginan'])
+                         ->whereMonth('created_at', $currentMonth)
+                         ->whereYear('created_at', $currentYear)
+                         ->get();
+        return Excel::download(new pemeliharaanExport($pemeliharaan), 'pemeliharaan_'.$formatDate.'.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+
+    }
     public function index()
     {
         $pemeliharaans = pemeliharaan::with(['tanaman','user','pengeringan','pendinginan'])->get();

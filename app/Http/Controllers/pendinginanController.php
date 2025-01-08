@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\pendinginan;
 use App\Models\tanaman;
+use Illuminate\Support\Carbon;
+use App\Exports\pendinginganExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class pendinginanController extends Controller
@@ -12,6 +15,20 @@ class pendinginanController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function export(){
+        $currentMonth = Carbon::now()->month;
+        $currentYear = Carbon::now()->year;
+        $now = Carbon::now();
+        $formatDate = $now->format('d-m-Y-H:i:s');
+        $pendinginan = pendinginan::with(['tanaman', 'User'])
+                         ->whereMonth('created_at', $currentMonth)
+                         ->whereYear('created_at', $currentYear)
+                         ->get();
+        return Excel::download(new pendinginganExport($pendinginan), 'pola_trapesium_'.$formatDate.'.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+
+    }
+
     public function index()
     {
         $pendinginans = pendinginan::all();

@@ -38,8 +38,8 @@ class polaTrapesiumController extends Controller
                          ->whereMonth('tanggal', $currentMonth)
                          ->whereYear('tanggal', $currentYear)
                          ->get();
-        dd($polatrapesium);
-        // return Excel::download(new polaTrapesiumExport($polatrapesium), 'pola_trapesium_'.$formatDate.'.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+        // dd($polatrapesium);
+        return Excel::download(new polaTrapesiumExport($polatrapesium), 'pola_trapesium_'.$formatDate.'.xlsx', \Maatwebsite\Excel\Excel::XLSX);
 
     }
 

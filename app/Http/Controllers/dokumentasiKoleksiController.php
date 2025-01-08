@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\dokumentasiKoleksi;
 use App\Models\tanaman;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\DokumentasiKoleksiExport;
+use App\Exports\dokumentasiKoleksiExport;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,7 +25,7 @@ class dokumentasiKoleksiController extends Controller
      * Show the form for creating a new resource.
      */
     public function export(){
-        return Excel::download(new DokumentasiKoleksiExport, 'dokumentasi_koleksi'.Carbon::now()->format('d-m-y-H:i:s').'.xlsx');
+        return Excel::download(new dokumentasiKoleksiExport, 'dokumentasi_koleksi'.Carbon::now()->format('d-m-y-H:i:s').'.xlsx');
     }
     public function create()
     {

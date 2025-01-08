@@ -2,6 +2,7 @@
 @section('heading', 'Dokumentasi Koleksi')
 @section('content')
 <section class="row">
+    
     <div class="card shadow">
         <div class="card-body">
             <a href="{{ route('dokumentasi-koleksi.create') }}" class="btn btn-primary mb-3">Tambah Data</a>

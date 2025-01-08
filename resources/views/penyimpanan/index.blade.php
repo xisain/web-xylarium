@@ -5,6 +5,7 @@
     <div class="card shadow">
         <div class="card-body">
             <a href="{{ route('penyimpanan.create') }}" class="btn btn-primary mb-3">Tambah data</a>
+            <a href="{{ route('penyimpanan.export') }}" class="btn btn-success mb-3">Unduh data</a>
             <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
                 <thead>
                     <tr>

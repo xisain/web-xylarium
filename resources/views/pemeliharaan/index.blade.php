@@ -5,6 +5,7 @@
     <div class="card shadow">
         <div class="card-body">
             <a href="{{ route('pemeliharaan.create') }}" class="btn btn-primary mb-4">Data Baru</a>
+            <a href="{{ route('pemeliharaan.export') }}" class="btn btn-success mb-4">Export Excel</a>
             <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
                 <thead>
                     <tr>

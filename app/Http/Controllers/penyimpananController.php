@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\tersimpanExport;
 use Illuminate\Http\Request;
 use App\Models\penyimpanan;
 use App\Models\tanaman;
+use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+
+
 
 class penyimpananController extends Controller
 {
@@ -15,6 +20,18 @@ class penyimpananController extends Controller
     {
         $penyimpanans =penyimpanan::with('tanaman', 'User')->get();
         return view("penyimpanan.index", compact("penyimpanans"));
+    }
+    public function export(){
+        $currentMonth = Carbon::now()->month;
+        $currentYear = Carbon::now()->year;
+        $now = Carbon::now();
+        $formatDate = $now->format('d-m-Y-H:i:s');
+        $penyimpanan = penyimpanan::with(['tanaman', 'User'])
+                         ->whereMonth('created_at', $currentMonth)
+                         ->whereYear('created_at', $currentYear)
+                         ->get();
+        return Excel::download(new tersimpanExport($penyimpanan), 'penyimpanan_'.$formatDate.'.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+
     }
 
     /**

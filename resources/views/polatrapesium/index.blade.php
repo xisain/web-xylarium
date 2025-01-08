@@ -8,6 +8,7 @@
         </div>
         <div class="card-body">
             <a href="{{ route('pola-trapesium.create') }}" class="btn btn-primary mb-3">Tambahkan Data</a>
+            <a href="{{ route('pola-trapesium.export') }}" class="btn btn-success mb-3">Unduh Data</a>
         <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
             <thead>
                 <tr>

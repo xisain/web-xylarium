@@ -41,7 +41,9 @@
         .sidebar-wrapper .menu {
             padding: 0 0.5rem;
         }
-
+        table.datatable{
+            color: #fff !important
+        }
         table.datatable td,
         table.table-sm td {
             padding: 15px 8px !important;

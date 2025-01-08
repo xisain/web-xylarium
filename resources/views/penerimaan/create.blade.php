@@ -95,7 +95,7 @@
                         results: data.data.map(function(item) {
                             return {
                                 id: item.id,
-                                text: item.nama, // Display 'nama' in the dropdown
+                                text: item.margajenis, // Display 'nama' in the dropdown
                                 genera: item.genera, // Include 'suku' in the result
                                 author:item.author_name,
                                 spesies: item.spesies,

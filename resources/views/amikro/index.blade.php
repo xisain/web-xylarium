@@ -5,6 +5,7 @@
 <div class="card shadow">
     <div class="card-body">
     <a href="{{ route('anatomi-mikroskopis.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
+    <a href="{{ route('anatomi-mikroskopis.pdf') }}" class="btn btn-danger mb-3">Unduh PDF</a>
     <table class="table table-striped table-bordered w-100 table-sm" id="datatable">
         <thead>
             <tr>

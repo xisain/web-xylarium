@@ -10,7 +10,8 @@
 
     <title> @yield('heading') | {{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -88,6 +89,22 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+
+        $('#tanaman_id').select2({
+            placeholder: 'Pilih Koleksi',
+            theme: "bootstrap-5",
+            allowClear: true,
+        });
+
+        $('#tanaman_id').on('select2:select', function(e) {
+            const data = e.params.data.element.dataset;
+            document.getElementById('nomor_koleksi').value = data.idPenomoran;
+            document.getElementById('penomoran_koleksi_id').value = data.idPenomoran;
+            document.getElementById('nama_tanaman').value = data.namaTanaman;
+            document.getElementById('suku').value = data.suku;
+            document.getElementById('habitus').value = data.habitus;
+        });
+
         const sidebarElement = document.querySelector('.sidebar-wrapper');
         window.confirmDelete = function(id) {
             Swal.fire({

@@ -6,6 +6,8 @@ use App\Exports\AnatomiMakroskopisExport;
 use Illuminate\Http\Request;
 use App\Models\anatomiMakroskopis;
 use App\Models\tanaman;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -24,6 +26,25 @@ class amakroController extends Controller
     {
         $amakro = anatomiMakroskopis::with('tanaman', 'User')->get();
         return Excel::download(new AnatomiMakroskopisExport($amakro), 'anatomiMakroskopis.xlsx');
+    }
+    public function pdfExport()
+    {
+        $currentMonth = Carbon::now()->month;
+        $currentYear = Carbon::now()->year;
+        $now = Carbon::now();
+
+        // Ambil data dari database
+        $amakro = anatomiMakroskopis::with('tanaman', 'User')
+            ->whereMonth('created_at', $currentMonth)
+            ->whereYear('created_at', $currentYear)
+            ->get();
+
+        // Render ke PDF
+        $pdf = Pdf::loadView('pdf.amakro', compact('amakro'))
+            ->setPaper('a4', 'landscape'); // Atur ukuran kertas ke A4 dan orientasi landscape
+
+        // Unduh file PDF
+        return $pdf->download('anatomi_makroskopis_' .$now. '.pdf');
     }
 
     /**

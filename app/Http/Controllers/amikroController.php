@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\anatomiMikroskopis;
 use App\Models\tanaman;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,6 +20,17 @@ class amikroController extends Controller
 
         $amikro = anatomiMikroskopis::with(['tanaman', 'User'])->get();
         return view('amikro.index', compact('amikro'));
+    }
+    public function pdfExport(){
+        $year = Carbon::now()->year;
+        $month = Carbon::now()->month;
+        $now = Carbon::now();
+        $amikro = anatomiMikroskopis::with(['tanaman', 'user'])->whereYear('created_at', $year)->whereMonth('created_at',$month)->get();
+        $pdf = Pdf::loadView('pdf.amikro', compact('amikro'))
+        ->setPaper('a4', 'landscape'); // Atur ukuran kertas ke A4 dan orientasi landscape
+
+    // Unduh file PDF
+    return $pdf->download('anatomi_makroskopis_' .$now. '.pdf');
     }
 
     /**

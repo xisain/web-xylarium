@@ -2,11 +2,11 @@
 @section('heading', 'Dokumentasi Koleksi')
 @section('content')
 <section class="row">
-    
+
     <div class="card shadow">
         <div class="card-body">
-            <a href="{{ route('dokumentasi-koleksi.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
-        <a href="{{ route('dokumentasi-koleksi.export') }}" class="btn btn-success mb-3">Unduh Data</a>
+        <a href="{{ route('dokumentasi-koleksi.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
+        <a href="{{ route('dokumentasi-koleksi.pdf') }}" class="btn btn-danger mb-3">Unduh PDF</a>
         <table class="table table-striped w-100 table-sm table-bordered" id="datatable">
             <thead>
                 <tr>

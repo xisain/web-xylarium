@@ -9,6 +9,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\dokumentasiKoleksiExport;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class dokumentasiKoleksiController extends Controller
 {
@@ -31,6 +33,23 @@ class dokumentasiKoleksiController extends Controller
     {
         $tanamans = tanaman::all();
         return view('dokumentasiKoleksi.create', compact('tanamans'));
+    }
+    public function pdfExport() {
+        $currentMonth = now()->month;
+        $currentYear = now()->year;
+
+        // Ambil data dari database
+        $koleksi = dokumentasiKoleksi::with(['tanaman', 'user'])
+            ->whereMonth('created_at', $currentMonth)
+            ->whereYear('created_at', $currentYear)
+            ->get();
+
+        // Render ke PDF
+        $pdf = Pdf::loadView('pdf.dokumentasikoleksi', compact('koleksi'))
+            ->setPaper('a4', 'landscape'); // Atur ukuran kertas ke A4 dan orientasi landscape
+
+        // Unduh file PDF
+        return $pdf->download('dokumentasi_koleksi_' . $currentMonth . '_' . $currentYear . '.pdf');
     }
 
     /**

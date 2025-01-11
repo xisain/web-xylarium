@@ -18,8 +18,6 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('/penerimaan', \App\Http\Controllers\penerimaanController::class);
-Route::get('/penerimaan/export/{withStatus}', [\App\Http\Controllers\penerimaanController::class, 'export'])->name('penerimaan.export');
 
 
 Auth::routes();
@@ -30,6 +28,7 @@ Route::get('/getout', function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/penerimaan/export/{withStatus}', [\App\Http\Controllers\penerimaanController::class, 'export'])->name('penerimaan.export');
 
     // Route Setiap Formulir & sudah selesai
     Route::resource('/tanaman', App\Http\Controllers\tanamanController::class); // 0
@@ -69,4 +68,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/export-anatomi-makroskopis', [amakroController::class, 'export'])->name('anatomi-makroskopis.export'); // form 10
     Route::get('/pemeliharaan-export', [pemeliharaanController::class, 'export'])->name('pemeliharaan.export'); // form 10
 
+    // PDF
+    Route::get('/dokumentasi-koleksi-pdf', [App\Http\Controllers\dokumentasiKoleksiController::class, 'pdfExport'])->name('dokumentasi-koleksi.pdf');
+    Route::get('/amakro-pdf', [App\Http\Controllers\amakroController::class, 'pdfExport'])->name('anatomi-makroskopis.pdf');
+    Route::get('/amikro-pdf', [App\Http\Controllers\amikroController::class, 'pdfExport'])->name('anatomi-mikroskopis.pdf');
 });

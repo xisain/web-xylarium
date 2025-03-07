@@ -1,7 +1,16 @@
 @extends('layouts.app')
 @section('heading','Pembuatan Bahan Trapesium Koleksi')
 @section('content')
-   <section>
+   <section class="row">
+    @if ($errors->any())
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <div class="card shadow">
         <div class="card-body">
             <form action="{{ route('pbtk.store') }}" method="post">
